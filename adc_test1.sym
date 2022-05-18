@@ -1,0 +1,97 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018-019 a0
+01A-01B a1
+01C-01D e0
+01E-01F e1
+020-021 e2
+022     temp
+023     r0
+024     r1
+025     r2
+026     r3
+027-030 shifr
+031-032 str.a
+031     MAIN.@SCRATCH1
+033     @delay_ms1.P1
+033     @DIV88.P2
+033-034 @DIV1616.P3
+033     str.@SCRATCH1
+034     @DIV88.P1
+035-036 @DIV1616.P1
+035     @DIV88.@SCRATCH1
+037     @DIV1616.@SCRATCH1
+F83     PSP_DATA
+F83     port_d
+FBB-FBC CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE-FBF CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+00AC  @delay_ms1
+009E  RDA_isr
+013E  str
+00D4  @DIV1616
+0116  @DIV88
+021E  MAIN
+021E  @cinit
+
+Project Directory:
+    D:\PIC_PROJECT\
+
+Project Files:
+    adc_test1.c
+    adc_test1.h
+    C:\Program Files (x86)\PICC\devices\18F452.h
+
+Units:
+    D:\PIC_PROJECT\adc_test1.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      adc_test1.err
+    Ext Symbols: adc_test1.esym
+    INHX32:      adc_test1.hex
+    Symbols:     adc_test1.sym
+    List:        adc_test1.lst
+    Debug/COFF:  adc_test1.cof
+    Project:     adc_test1.PJT
+    Call Tree:   adc_test1.tre
+    Statistics:  adc_test1.sta

@@ -1,0 +1,44 @@
+
+ROM used: 160 (0%)
+          160 (0%) including unused fragments
+
+          0 Average locations per line
+          8 Average locations per statement
+
+RAM used: 6 (0%) at main() level
+          7 (0%) worst case
+
+Stack used: 1 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   32    20 100  mS.c
+   27     0   0  mS.h
+  332     0   0  C:\Program Files (x86)\PICC\devices\18F452.h
+----- -----
+  391    20 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     38  12   1             @delay_ms1
+0    118  37   1   458  2.9  main
+
+Program metrics:
+    Functions               1
+    Statements              20
+    Comments                80
+    Volume (V)              461
+    Difficilty (D)          2.8
+    Effort to implement (E) 1282
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    138
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   156  32608  
+
+
+

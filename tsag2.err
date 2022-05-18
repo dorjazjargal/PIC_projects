@@ -1,0 +1,4 @@
+>>> Warning 202 "tsag2.c" Line 9(28,34): Variable never used:   e0_bit
+>>> Warning 202 "tsag2.c" Line 9(37,43): Variable never used:   e1_bit
+      Memory usage:   ROM=5%      RAM=2% - 3%
+      0 Errors,  2 Warnings.

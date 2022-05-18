@@ -1,0 +1,16 @@
+ÀÄadc_test1
+   ÃÄMAIN  0/278  Ram=1
+   ³  ÃÄ??0??
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄstr  0/224  Ram=3
+   ³  ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÀÄ@delay_ms1  0/40  Ram=1
+   ³  ÀÄ@delay_ms1  0/40  Ram=1
+   ÀÄRDA_isr  0/14  Ram=0

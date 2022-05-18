@@ -1,0 +1,97 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     umnuh_c
+019     umnuh_b
+01A     umnuh_d
+01B     umnuh_e
+01C     porta
+01D-026 ascii_number
+027     temp
+028     n1
+029     n2
+02A     n3
+02B     MAIN.@SCRATCH1
+02C     convert_ascii.port
+02D     @DIV88.P1
+02D     convert_ascii.@SCRATCH1
+02E     @DIV88.P1
+02E     @PUTCHAR_1_.P2
+02F     @DIV88.@SCRATCH1
+030     @GETCH_1_.@SCRATCH1
+F81     port_b
+F82     port_c
+F83     port_d
+F83     PSP_DATA
+F84     port_e
+FBB-FBC CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE-FBF CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+011E  @PUTCHAR_1_
+009E  @GETCH_1_
+00EA  RDA_isr
+0160  convert_ascii
+00F6  @DIV88
+0236  MAIN
+0236  @cinit
+
+Project Directory:
+    D:\PIC_PROJECT\
+
+Project Files:
+    tungaah2.c
+    tungaah2.h
+    C:\Program Files (x86)\PICC\devices\18F452.h
+
+Units:
+    D:\PIC_PROJECT\tungaah2.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      tungaah2.err
+    Ext Symbols: tungaah2.esym
+    INHX32:      tungaah2.hex
+    Symbols:     tungaah2.sym
+    List:        tungaah2.lst
+    Debug/COFF:  tungaah2.cof
+    Project:     tungaah2.PJT
+    Call Tree:   tungaah2.tre
+    Statistics:  tungaah2.sta

@@ -1,0 +1,20 @@
+ÀÄphoto_relay_test
+   ÃÄMAIN  0/664  Ram=1
+   ³  ÃÄ??0??
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄavg_adc  0/102  Ram=1
+   ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ³  ÀÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄ@DIV1616  0/66  Ram=5
+   ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÀÄ@delay_ms1  0/38  Ram=1
+   ÀÄRDA_isr  0/14  Ram=0

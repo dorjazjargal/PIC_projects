@@ -1,0 +1,7 @@
+>>> Warning 202 "tungaah2.c" Line 7(6,13): Variable never used:   umnuh_c
+>>> Warning 202 "tungaah2.c" Line 7(17,24): Variable never used:   umnuh_b
+>>> Warning 202 "tungaah2.c" Line 7(28,35): Variable never used:   umnuh_d
+>>> Warning 202 "tungaah2.c" Line 7(39,46): Variable never used:   umnuh_e
+>>> Warning 202 "tungaah2.c" Line 7(50,55): Variable never used:   porta
+      Memory usage:   ROM=2%      RAM=3% - 3%
+      0 Errors,  5 Warnings.

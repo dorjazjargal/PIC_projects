@@ -1,0 +1,46 @@
+
+ROM used: 256 (1%)
+          256 (1%) including unused fragments
+
+          1 Average locations per line
+          23 Average locations per statement
+
+RAM used: 24 (2%) at main() level
+          24 (2%) worst case
+
+Stack used: 1 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   29    11 100  tsag1.c
+   27     0   0  tsag1.h
+  332     0   0  C:\Program Files (x86)\PICC\devices\18F452.h
+----- -----
+  388    11 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0      6   1   0     5  1.0  EXT_isr
+0     96  19   0   260  2.3  MAIN
+
+Program metrics:
+    Functions               2
+    Statements              11
+    Comments                82
+    Volume (V)              282
+    Difficilty (D)          3.3
+    Effort to implement (E) 917
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    94
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0009C   150  0  
+0009E-07FFE   102  32508  
+
+
+

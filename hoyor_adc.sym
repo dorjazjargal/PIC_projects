@@ -1,0 +1,97 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     temp
+019     i
+01A-01B a0
+01C-01D a1
+01E-01F a2
+020-021 limit
+022-023 a4
+024     r0
+025     r1
+026     r2
+027     r3
+028-031 shifr
+032     avg_adc.times
+032     @DIV88.P1
+032     MAIN.@SCRATCH1
+033     @delay_ms1.P1
+033     @DIV88.P2
+033-034 @DIV1616.P3
+034     @DIV88.@SCRATCH1
+035-036 @DIV1616.P1
+037     @DIV1616.@SCRATCH1
+F83     port_d
+F83     PSP_DATA
+FBB-FBC CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE-FBF CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+00AC  @delay_ms1
+009E  RDA_isr
+0114  avg_adc
+00D2  @DIV1616
+01A2  MAIN
+017A  @DIV88
+01A2  @cinit
+
+Project Directory:
+    D:\PIC_PROJECT\
+
+Project Files:
+    hoyor_adc.c
+    hoyor_adc.h
+    C:\Program Files (x86)\PICC\devices\18F452.h
+
+Units:
+    D:\PIC_PROJECT\hoyor_adc.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      hoyor_adc.err
+    Ext Symbols: hoyor_adc.esym
+    INHX32:      hoyor_adc.hex
+    Symbols:     hoyor_adc.sym
+    List:        hoyor_adc.lst
+    Debug/COFF:  hoyor_adc.cof
+    Project:     hoyor_adc.PJT
+    Call Tree:   hoyor_adc.tre
+    Statistics:  hoyor_adc.sta

@@ -1,0 +1,126 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     r0
+019     a0
+01A     r1
+01B     mode
+01C     sec
+01D     min
+01E     hour
+01F     weekDay
+020     date
+021     month
+022     year
+023.0   b
+023.1   setbit
+023.2   hassan_sec
+023.3   e0_bit
+023.4   e1_bit
+024     set_time0.tsag
+024     @delay_us1.P1
+024     set_bcd.ival
+024     segment_ruu_gargah.k0
+024     @I2C_READ_1.P1
+024     set_sec.@SCRATCH1
+024     MAIN.@SCRATCH1
+025     @delay_ms1.P1
+025     set_time0.minute
+025     @I2C_READ_1.@SCRATCH1
+025     set_bcd.@SCRATCH1
+026     set_time0.sar
+026     @I2C_READ_1.@SCRATCH2
+026     set_bcd.@SCRATCH2
+027     set_time0.udur
+027     @DIV88.P1
+028     @I2C_WRITE_1.P1
+028     @DIV88.P2
+029     @DIV88.@SCRATCH1
+02A     EXT_isr.@SCRATCH1
+F81     port_b
+F83     port_d
+F83     PSP_DATA
+F84     port_e
+FBB-FBC CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE-FBF CCP_1
+FBF     CCP_1_HIGH
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+019C  @delay_ms1
+0310  @delay_us1
+01C2  @I2C_READ_1
+00F6  @I2C_WRITE_1
+013E  set_time0
+020A  rtc_getdate
+0354  set_bcd
+032C  @DIV88
+037A  readadc
+02AC  set_sec
+04A8  set_min
+0458  set_tsag
+03B8  set_sar
+0408  set_udur
+009E  EXT_isr
+00D4  @goto10147
+0004  segment_ruu_gargah
+04F8  MAIN
+04F8  @cinit
+
+Project Directory:
+    D:\PIC_PROJECT\
+
+Project Files:
+    tsag2.c
+    tsag2.h
+    C:\Program Files (x86)\PICC\devices\18F452.h
+
+Units:
+    D:\PIC_PROJECT\tsag2.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      tsag2.err
+    Ext Symbols: tsag2.esym
+    INHX32:      tsag2.hex
+    Symbols:     tsag2.sym
+    List:        tsag2.lst
+    Debug/COFF:  tsag2.cof
+    Project:     tsag2.PJT
+    Call Tree:   tsag2.tre
+    Statistics:  tsag2.sta

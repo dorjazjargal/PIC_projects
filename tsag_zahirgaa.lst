@@ -1,0 +1,2232 @@
+CCS PCH C Compiler, Version 4.057, 53710               12-Jan-22 09:43
+
+               Filename: D:\PIC_PROJECT\tsag_zahirgaa.lst
+
+               ROM used: 3518 bytes (11%)
+                         Largest free fragment is 29246
+               RAM used: 69 (4%) at main() level
+                         75 (5%) worst case
+               Stack:    6 worst case (4 in main + 2 for interrupts)
+
+*
+0000:  GOTO   05DE
+*
+0008:  MOVWF  05
+000A:  MOVFF  FD8,06
+000E:  MOVFF  FE0,07
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0D
+0018:  MOVFF  FEA,08
+001C:  MOVFF  FE1,09
+0020:  MOVFF  FE2,0A
+0024:  MOVFF  FD9,0B
+0028:  MOVFF  FDA,0C
+002C:  MOVFF  FF3,14
+0030:  MOVFF  FF4,15
+0034:  MOVFF  FFA,16
+0038:  MOVFF  00,0F
+003C:  MOVFF  01,10
+0040:  MOVFF  02,11
+0044:  MOVFF  03,12
+0048:  MOVFF  04,13
+004C:  BTFSS  FF2.4
+004E:  GOTO   0058
+0052:  BTFSC  FF2.1
+0054:  GOTO   00E6
+0058:  MOVFF  0F,00
+005C:  MOVFF  10,01
+0060:  MOVFF  11,02
+0064:  MOVFF  12,03
+0068:  MOVFF  13,04
+006C:  BSF    0E.7
+006E:  MOVFF  0D,FE9
+0072:  MOVFF  08,FEA
+0076:  MOVFF  09,FE1
+007A:  MOVFF  0A,FE2
+007E:  MOVFF  0B,FD9
+0082:  MOVFF  0C,FDA
+0086:  MOVFF  14,FF3
+008A:  MOVFF  15,FF4
+008E:  MOVFF  16,FFA
+0092:  MOVF   05,W
+0094:  MOVFF  07,FE0
+0098:  MOVFF  06,FD8
+009C:  RETFIE 0
+.................... #include "D:\PIC_PROJECT\tsag_zahirgaa.h" 
+.................... #include <18F452.h> 
+.................... //////// Standard Header file for the PIC18F452 device //////////////// 
+.................... #device PIC18F452 
+.................... #list 
+....................  
+.................... #device adc=8 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES WDT128                	//Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HS                    	//High speed Osc (> 4mhz) 
+.................... #FUSES NOPROTECT             	//Code not protected from reading 
+.................... #FUSES NOOSCSEN              	//Oscillator switching is disabled, main oscillator is source 
+.................... #FUSES BROWNOUT              	//Reset when brownout detected 
+.................... #FUSES BORV20                	//Brownout reset at 2.0V 
+.................... #FUSES NOPUT                 	//No Power Up Timer 
+.................... #FUSES STVREN                	//Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG               	//No Debug mode for ICD 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                 	//Program memory not write protected 
+.................... #FUSES NOWRTD                	//Data EEPROM not write protected 
+.................... #FUSES NOWRTB                	//Boot block not write protected 
+.................... #FUSES NOWRTC                	//configuration not registers write protected 
+.................... #FUSES NOCPD                 	//No EE protection 
+.................... #FUSES NOCPB                 	//No Boot Block code protection 
+.................... #FUSES NOEBTR                	//Memory not protected from table reads 
+.................... #FUSES NOEBTRB               	//Boot block not protected from table reads 
+....................  
+.................... #use delay(clock=20000000) 
+*
+0188:  CLRF   FEA
+018A:  MOVLW  45
+018C:  MOVWF  FE9
+018E:  MOVF   FEF,W
+0190:  BZ    01AC
+0192:  MOVLW  06
+0194:  MOVWF  01
+0196:  CLRF   00
+0198:  DECFSZ 00,F
+019A:  BRA    0198
+019C:  DECFSZ 01,F
+019E:  BRA    0196
+01A0:  MOVLW  7B
+01A2:  MOVWF  00
+01A4:  DECFSZ 00,F
+01A6:  BRA    01A4
+01A8:  DECFSZ FEF,F
+01AA:  BRA    0192
+01AC:  RETLW  00
+.................... #use i2c(Master,Fast,sda=PIN_C4,scl=PIN_C3) 
+*
+009E:  MOVLW  08
+00A0:  MOVWF  01
+00A2:  NOP   
+00A4:  BCF    F8B.3
+00A6:  BCF    F94.3
+00A8:  NOP   
+00AA:  RLCF   4A,F
+00AC:  BCF    F8B.4
+00AE:  BTFSC  FD8.0
+00B0:  BSF    F94.4
+00B2:  BTFSS  FD8.0
+00B4:  BCF    F94.4
+00B6:  BSF    F94.3
+00B8:  BTFSS  F82.3
+00BA:  BRA    00B8
+00BC:  DECFSZ 01,F
+00BE:  BRA    00A2
+00C0:  NOP   
+00C2:  BCF    F8B.3
+00C4:  BCF    F94.3
+00C6:  NOP   
+00C8:  BSF    F94.4
+00CA:  NOP   
+00CC:  NOP   
+00CE:  BSF    F94.3
+00D0:  BTFSS  F82.3
+00D2:  BRA    00D0
+00D4:  CLRF   01
+00D6:  NOP   
+00D8:  BTFSC  F82.4
+00DA:  BSF    01.0
+00DC:  BCF    F8B.3
+00DE:  BCF    F94.3
+00E0:  BCF    F8B.4
+00E2:  BCF    F94.4
+00E4:  RETLW  00
+*
+020E:  MOVLW  08
+0210:  MOVWF  45
+0212:  MOVFF  00,46
+0216:  BSF    F94.4
+0218:  NOP   
+021A:  BSF    F94.3
+021C:  BTFSS  F82.3
+021E:  BRA    021C
+0220:  BTFSC  F82.4
+0222:  BSF    FD8.0
+0224:  BTFSS  F82.4
+0226:  BCF    FD8.0
+0228:  RLCF   01,F
+022A:  NOP   
+022C:  BCF    F94.3
+022E:  BCF    F8B.3
+0230:  DECFSZ 45,F
+0232:  BRA    0216
+0234:  BSF    F94.4
+0236:  NOP   
+0238:  BCF    F8B.4
+023A:  MOVF   46,W
+023C:  BTFSS  FD8.2
+023E:  BCF    F94.4
+0240:  NOP   
+0242:  BSF    F94.3
+0244:  BTFSS  F82.3
+0246:  BRA    0244
+0248:  NOP   
+024A:  BCF    F8B.3
+024C:  BCF    F94.3
+024E:  NOP   
+0250:  BCF    F8B.4
+0252:  BCF    F94.4
+0254:  RETLW  00
+....................  
+....................  
+....................  
+.................... #byte port_a   =  0x0f80 
+.................... #byte port_e   =  0x0f84 
+.................... #byte port_d   =  0x0f83 
+.................... #byte port_b   =  0x0f81 
+.................... #bit digit3  =  0x0f82.0 
+.................... #bit digit2  =  0x0f82.1 
+.................... #bit digit1  =  0x0f82.2 
+.................... #bit digit0  =  0x0f82.5 
+.................... #bit led  =  0x0f82.7 
+....................  
+.................... int16 tsagmin=0,sarudur=0,tsagmin_2=0; 
+.................... int8 uldegdel=0, uld_0=0, uld_1=0,buhel=0,b0=0,b1=0; 
+.................... int8 shfr[10]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f}; 
+.................... int8 r0,a0=10,mode=0,sec0,sec1=0,min0,min1=0,tsag0,tsag1=0; 
+.................... int8 sec=0,min=0,hour=0,weekDay=0,date=0,month=0,year=0,day0,day1,sar0,sar1=0; 
+.................... int1 setbit=0,hassan_sec=0; 
+....................  
+....................  
+.................... void set_time0(int8 tsag, int8 minute, int8 sar, int8 udur) 
+.................... { 
+....................     I2C_Start();                          // Start I2C communication 
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+....................     I2C_Write(0x00);                   // Request sec RAM address at 00H 
+....................   
+....................     I2C_Write(0x30);                    // Write sec from RAM address 00H 
+....................     I2C_Write(0x30);                    // Write min from RAM address 01H 
+....................     I2C_Write(0x10);                    // Write hour from RAM address 02H 
+....................     I2C_Write(0x01);                   // Write weekDay on RAM address 03H 
+....................     I2C_Write(0x01);                    // Write date on RAM address 04H 
+....................     I2C_Write(0x01);                    // Write month on RAM address 05H 
+....................     I2C_Write(0x20);                    // Write year on RAM address 06h 
+....................   
+....................     I2C_Stop();                              // Stop I2C communication after Setting the Date 
+.................... } 
+....................  
+....................  
+.................... void rtc_getdate() 
+.................... { 
+....................     I2C_Start();                            // Start I2C communication 
+0256:  BSF    F94.4
+0258:  NOP   
+025A:  BSF    F94.3
+025C:  NOP   
+025E:  BCF    F8B.4
+0260:  BCF    F94.4
+0262:  NOP   
+0264:  BCF    F8B.3
+0266:  BCF    F94.3
+0268:  CLRF   18
+026A:  BTFSC  FF2.7
+026C:  BSF    18.7
+026E:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                         // connect to DS1307 by sending its ID on I2c Bus 
+0270:  MOVLW  D0
+0272:  MOVWF  4A
+0274:  RCALL  009E
+0276:  BTFSC  18.7
+0278:  BSF    FF2.7
+027A:  CLRF   18
+027C:  BTFSC  FF2.7
+027E:  BSF    18.7
+0280:  BCF    FF2.7
+....................     I2C_Write(0x00);                         // Request Sec RAM address at 00H 
+0282:  CLRF   4A
+0284:  RCALL  009E
+0286:  BTFSC  18.7
+0288:  BSF    FF2.7
+....................   
+....................     I2C_Stop();                                // Stop I2C communication after selecting Sec Register 
+028A:  BCF    F94.4
+028C:  NOP   
+028E:  BSF    F94.3
+0290:  BTFSS  F82.3
+0292:  BRA    0290
+0294:  NOP   
+0296:  BRA    0298
+0298:  NOP   
+029A:  BSF    F94.4
+029C:  NOP   
+....................   
+....................     I2C_Start();                            // Start I2C communication 
+029E:  BSF    F94.4
+02A0:  NOP   
+02A2:  BSF    F94.3
+02A4:  NOP   
+02A6:  BCF    F8B.4
+02A8:  BCF    F94.4
+02AA:  NOP   
+02AC:  BCF    F8B.3
+02AE:  BCF    F94.3
+02B0:  CLRF   18
+02B2:  BTFSC  FF2.7
+02B4:  BSF    18.7
+02B6:  BCF    FF2.7
+....................     I2C_Write(0xd1);            // connect to DS1307(Read mode) by sending its ID 
+02B8:  MOVLW  D1
+02BA:  MOVWF  4A
+02BC:  RCALL  009E
+02BE:  BTFSC  18.7
+02C0:  BSF    FF2.7
+....................   
+....................     sec = I2C_Read(1);                // read second and return Positive ACK 
+02C2:  MOVLW  01
+02C4:  MOVWF  00
+02C6:  RCALL  020E
+02C8:  MOVFF  01,38
+....................     min = I2C_Read(1);                 // read minute and return Positive ACK 
+02CC:  MOVLW  01
+02CE:  MOVWF  00
+02D0:  RCALL  020E
+02D2:  MOVFF  01,39
+....................     hour= I2C_Read(1);               // read hour and return Negative/No ACK 
+02D6:  MOVLW  01
+02D8:  MOVWF  00
+02DA:  RCALL  020E
+02DC:  MOVFF  01,3A
+....................     weekDay = I2C_Read(1);           // read weekDay and return Positive ACK 
+02E0:  MOVLW  01
+02E2:  MOVWF  00
+02E4:  RCALL  020E
+02E6:  MOVFF  01,3B
+....................     date= I2C_Read(1);              // read Date and return Positive ACK 
+02EA:  MOVLW  01
+02EC:  MOVWF  00
+02EE:  RCALL  020E
+02F0:  MOVFF  01,3C
+....................     month=I2C_Read(1);            // read Month and return Positive ACK 
+02F4:  MOVLW  01
+02F6:  MOVWF  00
+02F8:  RCALL  020E
+02FA:  MOVFF  01,3D
+....................     year =I2C_Read(0);             // read Year and return Negative/No ACK 
+02FE:  CLRF   00
+0300:  RCALL  020E
+0302:  MOVFF  01,3E
+....................   
+....................     I2C_Stop();                              // Stop I2C communication after reading the Date 
+0306:  BCF    F94.4
+0308:  NOP   
+030A:  BSF    F94.3
+030C:  BTFSS  F82.3
+030E:  BRA    030C
+0310:  NOP   
+0312:  BRA    0314
+0314:  NOP   
+0316:  BSF    F94.4
+0318:  NOP   
+.................... } 
+031A:  RETLW  00
+....................  
+.................... int8 set_bcd(int8 ival) 
+....................  { 
+....................     return ((ival / 10) << 4) | (ival % 10); 
+*
+03D0:  MOVFF  44,47
+03D4:  MOVLW  0A
+03D6:  MOVWF  48
+03D8:  RCALL  03A8
+03DA:  SWAPF  01,W
+03DC:  MOVWF  46
+03DE:  MOVLW  F0
+03E0:  ANDWF  46,F
+03E2:  MOVFF  44,47
+03E6:  MOVLW  0A
+03E8:  MOVWF  48
+03EA:  RCALL  03A8
+03EC:  MOVF   00,W
+03EE:  IORWF  46,W
+03F0:  MOVWF  01
+....................  } 
+03F2:  GOTO   0404 (RETURN)
+....................   
+....................   int8 read_port_a(){ 
+....................       port_a=port_a & 0x3f; 
+03F6:  MOVLW  3F
+03F8:  ANDWF  F80,F
+....................       a0=port_a; 
+03FA:  MOVFF  F80,30
+....................       a0=set_bcd(a0); 
+03FE:  MOVFF  30,44
+0402:  BRA    03D0
+0404:  MOVFF  01,30
+....................       return a0; 
+0408:  MOVFF  30,01
+....................   } 
+040C:  RETLW  00
+....................   
+....................  void set_sec(){ 
+....................  if(hassan_sec==1){ 
+*
+031C:  BTFSS  43.1
+031E:  BRA    03A4
+....................  delay_ms(20000); 
+0320:  MOVLW  50
+0322:  MOVWF  44
+0324:  MOVLW  FA
+0326:  MOVWF  45
+0328:  RCALL  0188
+032A:  DECFSZ 44,F
+032C:  BRA    0324
+....................  rtc_getdate(); 
+032E:  RCALL  0256
+....................   I2C_Start();                          // Start I2C communication 
+0330:  BSF    F94.4
+0332:  NOP   
+0334:  BSF    F94.3
+0336:  NOP   
+0338:  BCF    F8B.4
+033A:  BCF    F94.4
+033C:  NOP   
+033E:  BCF    F8B.3
+0340:  BCF    F94.3
+0342:  CLRF   18
+0344:  BTFSC  FF2.7
+0346:  BSF    18.7
+0348:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+034A:  MOVLW  D0
+034C:  MOVWF  4A
+034E:  RCALL  009E
+0350:  BTFSC  18.7
+0352:  BSF    FF2.7
+0354:  CLRF   18
+0356:  BTFSC  FF2.7
+0358:  BSF    18.7
+035A:  BCF    FF2.7
+....................     I2C_Write(0x00);                   // Request sec RAM address at 00H 
+035C:  CLRF   4A
+035E:  RCALL  009E
+0360:  BTFSC  18.7
+0362:  BSF    FF2.7
+....................     if(hour==0x10){ 
+0364:  MOVF   3A,W
+0366:  SUBLW  10
+0368:  BNZ   0370
+....................       sec=sec-0x02; 
+036A:  MOVLW  02
+036C:  SUBWF  38,F
+....................     }else{ 
+036E:  BRA    0374
+....................     sec=sec-0x03; 
+0370:  MOVLW  03
+0372:  SUBWF  38,F
+....................     } 
+....................     if(sec>=0x60){sec=0x00;} 
+0374:  MOVF   38,W
+0376:  SUBLW  5F
+0378:  BTFSS  FD8.0
+037A:  CLRF   38
+037C:  CLRF   18
+037E:  BTFSC  FF2.7
+0380:  BSF    18.7
+0382:  BCF    FF2.7
+....................     I2C_Write(sec);                    // Write min from RAM address 01H 
+0384:  MOVFF  38,4A
+0388:  RCALL  009E
+038A:  BTFSC  18.7
+038C:  BSF    FF2.7
+....................     I2C_STOP(); 
+038E:  BCF    F94.4
+0390:  NOP   
+0392:  BSF    F94.3
+0394:  BTFSS  F82.3
+0396:  BRA    0394
+0398:  NOP   
+039A:  BRA    039C
+039C:  NOP   
+039E:  BSF    F94.4
+03A0:  NOP   
+....................     hassan_sec=0; 
+03A2:  BCF    43.1
+....................  } 
+....................  } 
+03A4:  GOTO   0718 (RETURN)
+....................  void set_min(){ 
+....................  r0=read_port_a(); 
+*
+040E:  RCALL  03F6
+0410:  MOVFF  01,2F
+....................  min=r0; 
+0414:  MOVFF  2F,39
+....................  if(min>=0x60){min=0x59;} 
+0418:  MOVF   39,W
+041A:  SUBLW  5F
+041C:  BC    0422
+041E:  MOVLW  59
+0420:  MOVWF  39
+....................      I2C_Start();                          // Start I2C communication 
+0422:  BSF    F94.4
+0424:  NOP   
+0426:  BSF    F94.3
+0428:  NOP   
+042A:  BCF    F8B.4
+042C:  BCF    F94.4
+042E:  NOP   
+0430:  BCF    F8B.3
+0432:  BCF    F94.3
+0434:  CLRF   18
+0436:  BTFSC  FF2.7
+0438:  BSF    18.7
+043A:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+043C:  MOVLW  D0
+043E:  MOVWF  4A
+0440:  RCALL  009E
+0442:  BTFSC  18.7
+0444:  BSF    FF2.7
+0446:  CLRF   18
+0448:  BTFSC  FF2.7
+044A:  BSF    18.7
+044C:  BCF    FF2.7
+....................     I2C_Write(0x01);                   // Request minute RAM address at 01H 
+044E:  MOVLW  01
+0450:  MOVWF  4A
+0452:  RCALL  009E
+0454:  BTFSC  18.7
+0456:  BSF    FF2.7
+0458:  CLRF   18
+045A:  BTFSC  FF2.7
+045C:  BSF    18.7
+045E:  BCF    FF2.7
+....................   
+....................     I2C_Write(min);                    // Write min from RAM address 01H 
+0460:  MOVFF  39,4A
+0464:  RCALL  009E
+0466:  BTFSC  18.7
+0468:  BSF    FF2.7
+....................     I2C_STOP(); 
+046A:  BCF    F94.4
+046C:  NOP   
+046E:  BSF    F94.3
+0470:  BTFSS  F82.3
+0472:  BRA    0470
+0474:  NOP   
+0476:  BRA    0478
+0478:  NOP   
+047A:  BSF    F94.4
+047C:  NOP   
+....................  } 
+047E:  GOTO   0726 (RETURN)
+....................  void set_tsag(){ 
+....................  r0=read_port_a(); 
+0482:  RCALL  03F6
+0484:  MOVFF  01,2F
+....................  hour=r0; 
+0488:  MOVFF  2F,3A
+....................  if(hour>=0x24){hour=0x23;} 
+048C:  MOVF   3A,W
+048E:  SUBLW  23
+0490:  BC    0496
+0492:  MOVLW  23
+0494:  MOVWF  3A
+....................      I2C_Start();                          // Start I2C communication 
+0496:  BSF    F94.4
+0498:  NOP   
+049A:  BSF    F94.3
+049C:  NOP   
+049E:  BCF    F8B.4
+04A0:  BCF    F94.4
+04A2:  NOP   
+04A4:  BCF    F8B.3
+04A6:  BCF    F94.3
+04A8:  CLRF   18
+04AA:  BTFSC  FF2.7
+04AC:  BSF    18.7
+04AE:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+04B0:  MOVLW  D0
+04B2:  MOVWF  4A
+04B4:  RCALL  009E
+04B6:  BTFSC  18.7
+04B8:  BSF    FF2.7
+04BA:  CLRF   18
+04BC:  BTFSC  FF2.7
+04BE:  BSF    18.7
+04C0:  BCF    FF2.7
+....................     I2C_Write(0x02);                   // Request hour RAM address at 02H 
+04C2:  MOVLW  02
+04C4:  MOVWF  4A
+04C6:  RCALL  009E
+04C8:  BTFSC  18.7
+04CA:  BSF    FF2.7
+04CC:  CLRF   18
+04CE:  BTFSC  FF2.7
+04D0:  BSF    18.7
+04D2:  BCF    FF2.7
+....................   
+....................     I2C_Write(hour);                    // Write hour from RAM address 02H 
+04D4:  MOVFF  3A,4A
+04D8:  RCALL  009E
+04DA:  BTFSC  18.7
+04DC:  BSF    FF2.7
+....................     I2C_STOP(); 
+04DE:  BCF    F94.4
+04E0:  NOP   
+04E2:  BSF    F94.3
+04E4:  BTFSS  F82.3
+04E6:  BRA    04E4
+04E8:  NOP   
+04EA:  BRA    04EC
+04EC:  NOP   
+04EE:  BSF    F94.4
+04F0:  NOP   
+....................  } 
+04F2:  GOTO   0730 (RETURN)
+....................   
+....................   
+....................  void set_sar(){ 
+....................  r0=read_port_a(); 
+*
+056A:  RCALL  03F6
+056C:  MOVFF  01,2F
+....................  month=r0; 
+0570:  MOVFF  2F,3D
+....................  if(month>=0x13){month=0x12;} 
+0574:  MOVF   3D,W
+0576:  SUBLW  12
+0578:  BC    057E
+057A:  MOVLW  12
+057C:  MOVWF  3D
+....................  I2C_Start();                          // Start I2C communication 
+057E:  BSF    F94.4
+0580:  NOP   
+0582:  BSF    F94.3
+0584:  NOP   
+0586:  BCF    F8B.4
+0588:  BCF    F94.4
+058A:  NOP   
+058C:  BCF    F8B.3
+058E:  BCF    F94.3
+0590:  CLRF   18
+0592:  BTFSC  FF2.7
+0594:  BSF    18.7
+0596:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+0598:  MOVLW  D0
+059A:  MOVWF  4A
+059C:  RCALL  009E
+059E:  BTFSC  18.7
+05A0:  BSF    FF2.7
+05A2:  CLRF   18
+05A4:  BTFSC  FF2.7
+05A6:  BSF    18.7
+05A8:  BCF    FF2.7
+....................     I2C_Write(0x05);                   // Request hour RAM address at 02H 
+05AA:  MOVLW  05
+05AC:  MOVWF  4A
+05AE:  RCALL  009E
+05B0:  BTFSC  18.7
+05B2:  BSF    FF2.7
+05B4:  CLRF   18
+05B6:  BTFSC  FF2.7
+05B8:  BSF    18.7
+05BA:  BCF    FF2.7
+....................   
+....................     I2C_Write(month);                    // Write hour from RAM address 02H 
+05BC:  MOVFF  3D,4A
+05C0:  RCALL  009E
+05C2:  BTFSC  18.7
+05C4:  BSF    FF2.7
+....................     I2C_STOP(); 
+05C6:  BCF    F94.4
+05C8:  NOP   
+05CA:  BSF    F94.3
+05CC:  BTFSS  F82.3
+05CE:  BRA    05CC
+05D0:  NOP   
+05D2:  BRA    05D4
+05D4:  NOP   
+05D6:  BSF    F94.4
+05D8:  NOP   
+....................  } 
+05DA:  GOTO   0744 (RETURN)
+....................  void set_udur(){ 
+....................  r0=read_port_a(); 
+*
+04F6:  RCALL  03F6
+04F8:  MOVFF  01,2F
+....................  date=r0; 
+04FC:  MOVFF  2F,3C
+....................  if(date>=0x32){date=0x31;} 
+0500:  MOVF   3C,W
+0502:  SUBLW  31
+0504:  BC    050A
+0506:  MOVLW  31
+0508:  MOVWF  3C
+....................  I2C_Start();                          // Start I2C communication 
+050A:  BSF    F94.4
+050C:  NOP   
+050E:  BSF    F94.3
+0510:  NOP   
+0512:  BCF    F8B.4
+0514:  BCF    F94.4
+0516:  NOP   
+0518:  BCF    F8B.3
+051A:  BCF    F94.3
+051C:  CLRF   18
+051E:  BTFSC  FF2.7
+0520:  BSF    18.7
+0522:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+0524:  MOVLW  D0
+0526:  MOVWF  4A
+0528:  RCALL  009E
+052A:  BTFSC  18.7
+052C:  BSF    FF2.7
+052E:  CLRF   18
+0530:  BTFSC  FF2.7
+0532:  BSF    18.7
+0534:  BCF    FF2.7
+....................     I2C_Write(0x04);                   // Request udur RAM address at 04H 
+0536:  MOVLW  04
+0538:  MOVWF  4A
+053A:  RCALL  009E
+053C:  BTFSC  18.7
+053E:  BSF    FF2.7
+0540:  CLRF   18
+0542:  BTFSC  FF2.7
+0544:  BSF    18.7
+0546:  BCF    FF2.7
+....................   
+....................     I2C_Write(date);                    // Write udur from RAM address 04H 
+0548:  MOVFF  3C,4A
+054C:  RCALL  009E
+054E:  BTFSC  18.7
+0550:  BSF    FF2.7
+....................     I2C_STOP(); 
+0552:  BCF    F94.4
+0554:  NOP   
+0556:  BSF    F94.3
+0558:  BTFSS  F82.3
+055A:  BRA    0558
+055C:  NOP   
+055E:  BRA    0560
+0560:  NOP   
+0562:  BSF    F94.4
+0564:  NOP   
+....................      
+....................  } 
+0566:  GOTO   073A (RETURN)
+....................   
+....................  int16 bcd_tsagmin(int16 massive_tsag){ 
+....................    buhel=massive_tsag/100; 
+....................    uldegdel=massive_tsag%100; 
+....................    if(uldegdel>=60){ 
+....................       buhel++; 
+....................       uldegdel=uldegdel-60; 
+....................    } 
+....................     
+....................       uld_0=uldegdel%10; 
+....................       uld_1=uldegdel/10; 
+....................       uld_1=uld_1<<4; 
+....................       uld_1=uld_1 & 0xf0; 
+....................       uld_0=uld_0 | uld_1; 
+....................     
+....................    b0=buhel%10; 
+....................    b1=buhel/10; 
+....................    b1=b1<<4; 
+....................    b1=b1 & 0xf0; 
+....................    b0= b0 | b1; 
+....................    tsagmin_2=make16(b0,uld_0); 
+....................  return tsagmin_2; 
+....................  } 
+....................   
+.................... #int_EXT 
+.................... void  EXT_isr(void)  
+.................... { 
+.................... output_a(0x00); 
+*
+00E6:  CLRF   F92
+00E8:  CLRF   F89
+.................... output_e(0x00); 
+00EA:  BCF    F96.0
+00EC:  BCF    F96.1
+00EE:  BCF    F96.2
+00F0:  CLRF   F8D
+....................  
+.................... setbit=bit_test(port_e,2); 
+00F2:  BCF    43.0
+00F4:  BTFSC  F84.2
+00F6:  BSF    43.0
+.................... if(setbit==1){ 
+00F8:  BTFSS  43.0
+00FA:  BRA    0124
+.................... switch (port_e){ 
+00FC:  MOVLW  04
+00FE:  SUBWF  F84,W
+0100:  ADDLW  FC
+0102:  BC    0122
+0104:  ADDLW  04
+0106:  GOTO   0166
+....................    case 4: mode=4;break; 
+010A:  MOVLW  04
+010C:  MOVWF  31
+010E:  BRA    0122
+....................    case 5: mode=5;break; 
+0110:  MOVLW  05
+0112:  MOVWF  31
+0114:  BRA    0122
+....................    case 6: mode=6;break; 
+0116:  MOVLW  06
+0118:  MOVWF  31
+011A:  BRA    0122
+....................    case 7: mode=7;break; 
+011C:  MOVLW  07
+011E:  MOVWF  31
+0120:  BRA    0122
+.................... } 
+.................... } 
+.................... else{ 
+0122:  BRA    0160
+.................... //secund noilloj bga heseg 
+.................... if(port_a==0x20){ 
+0124:  MOVF   F80,W
+0126:  SUBLW  20
+0128:  BNZ   0160
+.................... I2C_Start();                          // Start I2C communication 
+012A:  BSF    F94.4
+012C:  NOP   
+012E:  BSF    F94.3
+0130:  NOP   
+0132:  BCF    F8B.4
+0134:  BCF    F94.4
+0136:  NOP   
+0138:  BCF    F8B.3
+013A:  BCF    F94.3
+.................... I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+013C:  MOVLW  D0
+013E:  MOVWF  4A
+0140:  RCALL  009E
+.................... I2C_Write(0x00);                   // Request sec RAM address at 02H 
+0142:  CLRF   4A
+0144:  RCALL  009E
+.................... I2C_Write(1);                    // Write sec from RAM address 00H 
+0146:  MOVLW  01
+0148:  MOVWF  4A
+014A:  RCALL  009E
+.................... I2C_STOP(); 
+014C:  BCF    F94.4
+014E:  NOP   
+0150:  BSF    F94.3
+0152:  BTFSS  F82.3
+0154:  BRA    0152
+0156:  NOP   
+0158:  BRA    015A
+015A:  NOP   
+015C:  BSF    F94.4
+015E:  NOP   
+.................... } 
+.................... } 
+.................... } 
+0160:  BCF    FF2.1
+0162:  GOTO   0058
+....................  void set_year(){ 
+....................    I2C_Start();                          // Start I2C communication 
+*
+01AE:  BSF    F94.4
+01B0:  NOP   
+01B2:  BSF    F94.3
+01B4:  NOP   
+01B6:  BCF    F8B.4
+01B8:  BCF    F94.4
+01BA:  NOP   
+01BC:  BCF    F8B.3
+01BE:  BCF    F94.3
+01C0:  CLRF   18
+01C2:  BTFSC  FF2.7
+01C4:  BSF    18.7
+01C6:  BCF    FF2.7
+....................   
+....................     I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+01C8:  MOVLW  D0
+01CA:  MOVWF  4A
+01CC:  RCALL  009E
+01CE:  BTFSC  18.7
+01D0:  BSF    FF2.7
+01D2:  CLRF   18
+01D4:  BTFSC  FF2.7
+01D6:  BSF    18.7
+01D8:  BCF    FF2.7
+....................     I2C_Write(0x06);                   // Request year RAM address at 06H 
+01DA:  MOVLW  06
+01DC:  MOVWF  4A
+01DE:  RCALL  009E
+01E0:  BTFSC  18.7
+01E2:  BSF    FF2.7
+01E4:  CLRF   18
+01E6:  BTFSC  FF2.7
+01E8:  BSF    18.7
+01EA:  BCF    FF2.7
+....................   
+....................     I2C_Write(0x20);                    // Write udur from RAM address 04H 
+01EC:  MOVLW  20
+01EE:  MOVWF  4A
+01F0:  RCALL  009E
+01F2:  BTFSC  18.7
+01F4:  BSF    FF2.7
+....................     I2C_STOP(); 
+01F6:  BCF    F94.4
+01F8:  NOP   
+01FA:  BSF    F94.3
+01FC:  BTFSS  F82.3
+01FE:  BRA    01FC
+0200:  NOP   
+0202:  BRA    0204
+0204:  NOP   
+0206:  BSF    F94.4
+0208:  NOP   
+....................  } 
+020A:  GOTO   06C4 (RETURN)
+....................  
+.................... void main() 
+.................... { 
+*
+05DE:  CLRF   FF8
+05E0:  BCF    FD0.7
+05E2:  BSF    0D.7
+05E4:  CLRF   FEA
+05E6:  CLRF   FE9
+05E8:  BSF    FC1.0
+05EA:  BSF    FC1.1
+05EC:  BSF    FC1.2
+05EE:  BCF    FC1.3
+05F0:  CLRF   19
+05F2:  CLRF   1A
+05F4:  CLRF   1B
+05F6:  CLRF   1C
+05F8:  CLRF   1D
+05FA:  CLRF   1E
+05FC:  CLRF   1F
+05FE:  CLRF   20
+0600:  CLRF   21
+0602:  CLRF   22
+0604:  CLRF   23
+0606:  CLRF   24
+0608:  MOVLW  3F
+060A:  MOVWF  25
+060C:  MOVLW  06
+060E:  MOVWF  26
+0610:  MOVLW  5B
+0612:  MOVWF  27
+0614:  MOVLW  4F
+0616:  MOVWF  28
+0618:  MOVLW  66
+061A:  MOVWF  29
+061C:  MOVLW  6D
+061E:  MOVWF  2A
+0620:  MOVLW  7D
+0622:  MOVWF  2B
+0624:  MOVLW  07
+0626:  MOVWF  2C
+0628:  MOVLW  7F
+062A:  MOVWF  2D
+062C:  MOVLW  6F
+062E:  MOVWF  2E
+0630:  MOVLW  0A
+0632:  MOVWF  30
+0634:  CLRF   31
+0636:  CLRF   33
+0638:  CLRF   35
+063A:  CLRF   37
+063C:  CLRF   38
+063E:  CLRF   39
+0640:  CLRF   3A
+0642:  CLRF   3B
+0644:  CLRF   3C
+0646:  CLRF   3D
+0648:  CLRF   3E
+064A:  CLRF   42
+064C:  BCF    43.0
+064E:  BCF    43.1
+....................  
+....................    setup_adc_ports(NO_ANALOGS); 
+0650:  BSF    FC1.0
+0652:  BSF    FC1.1
+0654:  BSF    FC1.2
+0656:  BCF    FC1.3
+....................    setup_adc(ADC_OFF); 
+0658:  BCF    FC2.0
+....................    setup_psp(PSP_DISABLED); 
+065A:  BCF    F96.4
+....................    setup_wdt(WDT_OFF); 
+065C:  BCF    FD1.0
+....................    setup_timer_0(RTCC_INTERNAL); 
+065E:  MOVLW  80
+0660:  MOVWF  FD5
+....................    setup_timer_1(T1_DISABLED); 
+0662:  CLRF   FCD
+....................    setup_timer_2(T2_DISABLED,0,1); 
+0664:  MOVLW  00
+0666:  MOVWF  FCA
+0668:  MOVLW  00
+066A:  MOVWF  FCB
+....................    setup_timer_3(T3_DISABLED|T3_DIV_BY_1); 
+066C:  MOVF   FB1,W
+066E:  ANDLW  48
+0670:  MOVWF  FB1
+....................    enable_interrupts(INT_EXT); 
+0672:  BSF    FF2.4
+....................    enable_interrupts(GLOBAL); 
+0674:  MOVLW  C0
+0676:  IORWF  FF2,F
+.................... set_tris_a(0xff); 
+0678:  MOVLW  FF
+067A:  MOVWF  F92
+.................... set_tris_e(0xff); 
+067C:  BSF    F96.0
+067E:  BSF    F96.1
+0680:  BSF    F96.2
+.................... set_tris_d(0x00); 
+0682:  MOVLW  00
+0684:  MOVWF  F95
+.................... set_tris_b(0x03); 
+0686:  MOVLW  03
+0688:  MOVWF  F93
+.................... set_tris_c(0x00); 
+068A:  MOVLW  00
+068C:  MOVWF  F94
+.................... output_a(0x00); 
+068E:  CLRF   F92
+0690:  CLRF   F89
+.................... output_b(0x00); 
+0692:  CLRF   F93
+0694:  CLRF   F8A
+.................... output_d(0x00); 
+0696:  CLRF   F95
+0698:  CLRF   F8C
+.................... output_e(0x00); 
+069A:  BCF    F96.0
+069C:  BCF    F96.1
+069E:  BCF    F96.2
+06A0:  CLRF   F8D
+....................  
+....................  
+.................... led=1; 
+06A2:  BSF    F82.7
+.................... delay_ms(800); 
+06A4:  MOVLW  04
+06A6:  MOVWF  44
+06A8:  MOVLW  C8
+06AA:  MOVWF  45
+06AC:  RCALL  0188
+06AE:  DECFSZ 44,F
+06B0:  BRA    06A8
+.................... led=0; 
+06B2:  BCF    F82.7
+.................... delay_ms(800); 
+06B4:  MOVLW  04
+06B6:  MOVWF  44
+06B8:  MOVLW  C8
+06BA:  MOVWF  45
+06BC:  RCALL  0188
+06BE:  DECFSZ 44,F
+06C0:  BRA    06B8
+.................... set_year(); 
+06C2:  BRA    01AE
+.................... //set_time0(0x09,0x15,0x01,0x01); 
+....................  
+.................... for(;;){ 
+....................   rtc_getdate(); 
+06C4:  RCALL  0256
+.................... if(hour==0x15 && min==0x59 && sec>=0x57){hassan_sec=1;} 
+06C6:  MOVF   3A,W
+06C8:  SUBLW  15
+06CA:  BNZ   06DA
+06CC:  MOVF   39,W
+06CE:  SUBLW  59
+06D0:  BNZ   06DA
+06D2:  MOVF   38,W
+06D4:  SUBLW  56
+06D6:  BTFSS  FD8.0
+06D8:  BSF    43.1
+.................... if(hour==0x21 && min==0x59 && sec>=0x57){hassan_sec=1;} 
+06DA:  MOVF   3A,W
+06DC:  SUBLW  21
+06DE:  BNZ   06EE
+06E0:  MOVF   39,W
+06E2:  SUBLW  59
+06E4:  BNZ   06EE
+06E6:  MOVF   38,W
+06E8:  SUBLW  56
+06EA:  BTFSS  FD8.0
+06EC:  BSF    43.1
+.................... if(hour==0x03 && min==0x59 && sec>=0x57){hassan_sec=1;} 
+06EE:  MOVF   3A,W
+06F0:  SUBLW  03
+06F2:  BNZ   0702
+06F4:  MOVF   39,W
+06F6:  SUBLW  59
+06F8:  BNZ   0702
+06FA:  MOVF   38,W
+06FC:  SUBLW  56
+06FE:  BTFSS  FD8.0
+0700:  BSF    43.1
+.................... if(hour==0x09 && min==0x59 && sec>=0x57){hassan_sec=1;} 
+0702:  MOVF   3A,W
+0704:  SUBLW  09
+0706:  BNZ   0716
+0708:  MOVF   39,W
+070A:  SUBLW  59
+070C:  BNZ   0716
+070E:  MOVF   38,W
+0710:  SUBLW  56
+0712:  BTFSS  FD8.0
+0714:  BSF    43.1
+....................  
+....................  
+.................... set_sec(); 
+0716:  BRA    031C
+....................  
+.................... setbit=bit_test(port_e,2); 
+0718:  BCF    43.0
+071A:  BTFSC  F84.2
+071C:  BSF    43.0
+....................  
+....................  
+.................... if(mode==4){set_min(); mode=0;} 
+071E:  MOVF   31,W
+0720:  SUBLW  04
+0722:  BNZ   0728
+0724:  BRA    040E
+0726:  CLRF   31
+.................... if(mode==5){set_tsag(); mode=0;} 
+0728:  MOVF   31,W
+072A:  SUBLW  05
+072C:  BNZ   0732
+072E:  BRA    0482
+0730:  CLRF   31
+.................... if(mode==6){set_udur(); mode=0;} 
+0732:  MOVF   31,W
+0734:  SUBLW  06
+0736:  BNZ   073C
+0738:  BRA    04F6
+073A:  CLRF   31
+.................... if(mode==7){set_sar(); mode=0;} 
+073C:  MOVF   31,W
+073E:  SUBLW  07
+0740:  BNZ   0746
+0742:  BRA    056A
+0744:  CLRF   31
+....................  
+.................... port_e=0; 
+0746:  CLRF   F84
+....................  
+.................... sec0=sec&0x0f; 
+0748:  MOVF   38,W
+074A:  ANDLW  0F
+074C:  MOVWF  32
+.................... sec1=sec&0xf0; 
+074E:  MOVF   38,W
+0750:  ANDLW  F0
+0752:  MOVWF  33
+.................... sec1=sec1>>4; 
+0754:  SWAPF  33,F
+0756:  MOVLW  0F
+0758:  ANDWF  33,F
+....................  
+.................... min0=min&0x0f; 
+075A:  MOVF   39,W
+075C:  ANDLW  0F
+075E:  MOVWF  34
+.................... min1=min&0xf0; 
+0760:  MOVF   39,W
+0762:  ANDLW  F0
+0764:  MOVWF  35
+.................... min1=min1>>4; 
+0766:  SWAPF  35,F
+0768:  MOVLW  0F
+076A:  ANDWF  35,F
+....................  
+.................... tsag0=hour&0x0f; 
+076C:  MOVF   3A,W
+076E:  ANDLW  0F
+0770:  MOVWF  36
+.................... tsag1=hour&0xf0; 
+0772:  MOVF   3A,W
+0774:  ANDLW  F0
+0776:  MOVWF  37
+.................... tsag1=tsag1>>4; 
+0778:  SWAPF  37,F
+077A:  MOVLW  0F
+077C:  ANDWF  37,F
+....................  
+.................... sar0=month&0x0f; 
+077E:  MOVF   3D,W
+0780:  ANDLW  0F
+0782:  MOVWF  41
+.................... sar1=month&0xf0; 
+0784:  MOVF   3D,W
+0786:  ANDLW  F0
+0788:  MOVWF  42
+.................... sar1=sar1>>4; 
+078A:  SWAPF  42,F
+078C:  MOVLW  0F
+078E:  ANDWF  42,F
+....................  
+.................... day0=date&0x0f; 
+0790:  MOVF   3C,W
+0792:  ANDLW  0F
+0794:  MOVWF  3F
+.................... day1=date&0xf0; 
+0796:  MOVF   3C,W
+0798:  ANDLW  F0
+079A:  MOVWF  40
+.................... day1=day1>>4; 
+079C:  SWAPF  40,F
+079E:  MOVLW  0F
+07A0:  ANDWF  40,F
+....................  
+.................... if(port_e==0){ 
+07A2:  MOVF   F84,F
+07A4:  BNZ   0832
+.................... port_d=shfr[sec0]; 
+07A6:  CLRF   03
+07A8:  MOVF   32,W
+07AA:  ADDLW  25
+07AC:  MOVWF  FE9
+07AE:  MOVLW  00
+07B0:  ADDWFC 03,W
+07B2:  MOVWF  FEA
+07B4:  MOVFF  FEF,F83
+.................... port_d=port_d|0x80; 
+07B8:  BSF    F83.7
+.................... digit0=1; 
+07BA:  BSF    F82.5
+.................... delay_ms(10); 
+07BC:  MOVLW  0A
+07BE:  MOVWF  45
+07C0:  RCALL  0188
+.................... digit0=0; 
+07C2:  BCF    F82.5
+.................... delay_ms(1); 
+07C4:  MOVLW  01
+07C6:  MOVWF  45
+07C8:  RCALL  0188
+.................... port_d=shfr[sec1]; 
+07CA:  CLRF   03
+07CC:  MOVF   33,W
+07CE:  ADDLW  25
+07D0:  MOVWF  FE9
+07D2:  MOVLW  00
+07D4:  ADDWFC 03,W
+07D6:  MOVWF  FEA
+07D8:  MOVFF  FEF,F83
+.................... digit1=1; 
+07DC:  BSF    F82.2
+.................... delay_ms(10); 
+07DE:  MOVLW  0A
+07E0:  MOVWF  45
+07E2:  RCALL  0188
+.................... digit1=0; 
+07E4:  BCF    F82.2
+.................... delay_ms(1); 
+07E6:  MOVLW  01
+07E8:  MOVWF  45
+07EA:  RCALL  0188
+....................  
+.................... port_d=shfr[min0]; 
+07EC:  CLRF   03
+07EE:  MOVF   34,W
+07F0:  ADDLW  25
+07F2:  MOVWF  FE9
+07F4:  MOVLW  00
+07F6:  ADDWFC 03,W
+07F8:  MOVWF  FEA
+07FA:  MOVFF  FEF,F83
+.................... port_d=port_d|0x80; 
+07FE:  BSF    F83.7
+.................... digit2=1; 
+0800:  BSF    F82.1
+.................... delay_ms(10); 
+0802:  MOVLW  0A
+0804:  MOVWF  45
+0806:  RCALL  0188
+.................... digit2=0; 
+0808:  BCF    F82.1
+.................... delay_ms(1); 
+080A:  MOVLW  01
+080C:  MOVWF  45
+080E:  RCALL  0188
+.................... port_d=shfr[min1]; 
+0810:  CLRF   03
+0812:  MOVF   35,W
+0814:  ADDLW  25
+0816:  MOVWF  FE9
+0818:  MOVLW  00
+081A:  ADDWFC 03,W
+081C:  MOVWF  FEA
+081E:  MOVFF  FEF,F83
+.................... digit3=1; 
+0822:  BSF    F82.0
+.................... delay_ms(10); 
+0824:  MOVLW  0A
+0826:  MOVWF  45
+0828:  RCALL  0188
+.................... digit3=0; 
+082A:  BCF    F82.0
+.................... delay_ms(1); 
+082C:  MOVLW  01
+082E:  MOVWF  45
+0830:  RCALL  0188
+.................... } 
+....................  
+.................... if(port_e==1){ 
+0832:  DECFSZ F84,W
+0834:  BRA    08B4
+.................... port_d=shfr[min0]; 
+0836:  CLRF   03
+0838:  MOVF   34,W
+083A:  ADDLW  25
+083C:  MOVWF  FE9
+083E:  MOVLW  00
+0840:  ADDWFC 03,W
+0842:  MOVWF  FEA
+0844:  MOVFF  FEF,F83
+.................... port_d=port_d|0x80; 
+0848:  BSF    F83.7
+.................... digit0=1; 
+084A:  BSF    F82.5
+.................... delay_ms(10); 
+084C:  MOVLW  0A
+084E:  MOVWF  45
+0850:  RCALL  0188
+.................... digit0=0; 
+0852:  BCF    F82.5
+.................... port_d=shfr[min1]; 
+0854:  CLRF   03
+0856:  MOVF   35,W
+0858:  ADDLW  25
+085A:  MOVWF  FE9
+085C:  MOVLW  00
+085E:  ADDWFC 03,W
+0860:  MOVWF  FEA
+0862:  MOVFF  FEF,F83
+.................... digit1=1; 
+0866:  BSF    F82.2
+.................... delay_ms(10); 
+0868:  MOVLW  0A
+086A:  MOVWF  45
+086C:  RCALL  0188
+.................... digit1=0; 
+086E:  BCF    F82.2
+.................... delay_ms(5); 
+0870:  MOVLW  05
+0872:  MOVWF  45
+0874:  RCALL  0188
+....................  
+.................... port_d=shfr[tsag0]; 
+0876:  CLRF   03
+0878:  MOVF   36,W
+087A:  ADDLW  25
+087C:  MOVWF  FE9
+087E:  MOVLW  00
+0880:  ADDWFC 03,W
+0882:  MOVWF  FEA
+0884:  MOVFF  FEF,F83
+.................... digit2=1; 
+0888:  BSF    F82.1
+.................... delay_ms(10); 
+088A:  MOVLW  0A
+088C:  MOVWF  45
+088E:  RCALL  0188
+.................... digit2=0; 
+0890:  BCF    F82.1
+.................... port_d=shfr[tsag1]; 
+0892:  CLRF   03
+0894:  MOVF   37,W
+0896:  ADDLW  25
+0898:  MOVWF  FE9
+089A:  MOVLW  00
+089C:  ADDWFC 03,W
+089E:  MOVWF  FEA
+08A0:  MOVFF  FEF,F83
+.................... digit3=1; 
+08A4:  BSF    F82.0
+.................... delay_ms(10); 
+08A6:  MOVLW  0A
+08A8:  MOVWF  45
+08AA:  RCALL  0188
+.................... digit3=0; 
+08AC:  BCF    F82.0
+.................... delay_ms(10); 
+08AE:  MOVLW  0A
+08B0:  MOVWF  45
+08B2:  RCALL  0188
+.................... } 
+....................  
+.................... if(port_e==0x03 || port_e==2){ 
+08B4:  MOVF   F84,W
+08B6:  SUBLW  03
+08B8:  BZ    08C0
+08BA:  MOVF   F84,W
+08BC:  SUBLW  02
+08BE:  BNZ   093C
+.................... port_d=shfr[day0]; 
+08C0:  CLRF   03
+08C2:  MOVF   3F,W
+08C4:  ADDLW  25
+08C6:  MOVWF  FE9
+08C8:  MOVLW  00
+08CA:  ADDWFC 03,W
+08CC:  MOVWF  FEA
+08CE:  MOVFF  FEF,F83
+.................... digit0=1; 
+08D2:  BSF    F82.5
+.................... delay_ms(10); 
+08D4:  MOVLW  0A
+08D6:  MOVWF  45
+08D8:  RCALL  0188
+.................... digit0=0; 
+08DA:  BCF    F82.5
+.................... port_d=shfr[day1]; 
+08DC:  CLRF   03
+08DE:  MOVF   40,W
+08E0:  ADDLW  25
+08E2:  MOVWF  FE9
+08E4:  MOVLW  00
+08E6:  ADDWFC 03,W
+08E8:  MOVWF  FEA
+08EA:  MOVFF  FEF,F83
+.................... digit1=1; 
+08EE:  BSF    F82.2
+.................... delay_ms(10); 
+08F0:  MOVLW  0A
+08F2:  MOVWF  45
+08F4:  RCALL  0188
+.................... digit1=0; 
+08F6:  BCF    F82.2
+.................... delay_ms(10); 
+08F8:  MOVLW  0A
+08FA:  MOVWF  45
+08FC:  RCALL  0188
+....................  
+.................... port_d=shfr[sar0]; 
+08FE:  CLRF   03
+0900:  MOVF   41,W
+0902:  ADDLW  25
+0904:  MOVWF  FE9
+0906:  MOVLW  00
+0908:  ADDWFC 03,W
+090A:  MOVWF  FEA
+090C:  MOVFF  FEF,F83
+.................... digit2=1; 
+0910:  BSF    F82.1
+.................... delay_ms(10); 
+0912:  MOVLW  0A
+0914:  MOVWF  45
+0916:  RCALL  0188
+.................... digit2=0; 
+0918:  BCF    F82.1
+.................... port_d=shfr[sar1]; 
+091A:  CLRF   03
+091C:  MOVF   42,W
+091E:  ADDLW  25
+0920:  MOVWF  FE9
+0922:  MOVLW  00
+0924:  ADDWFC 03,W
+0926:  MOVWF  FEA
+0928:  MOVFF  FEF,F83
+.................... digit3=1; 
+092C:  BSF    F82.0
+.................... delay_ms(10); 
+092E:  MOVLW  0A
+0930:  MOVWF  45
+0932:  RCALL  0188
+.................... digit3=0; 
+0934:  BCF    F82.0
+.................... delay_ms(10); 
+0936:  MOVLW  0A
+0938:  MOVWF  45
+093A:  RCALL  0188
+.................... } 
+.................... //starts of gerel on/of 
+.................... tsagmin=make16(hour,min); 
+093C:  MOVFF  3A,1A
+0940:  MOVFF  39,19
+.................... sarudur=make16(month,date); 
+0944:  MOVFF  3D,1C
+0948:  MOVFF  3C,1B
+.................... if(month==1 || month==2 || month==0x12 || month==0x11){ 
+094C:  DECFSZ 3D,W
+094E:  BRA    0952
+0950:  BRA    0964
+0952:  MOVF   3D,W
+0954:  SUBLW  02
+0956:  BZ    0964
+0958:  MOVF   3D,W
+095A:  SUBLW  12
+095C:  BZ    0964
+095E:  MOVF   3D,W
+0960:  SUBLW  11
+0962:  BNZ   0988
+....................   if(tsagmin<=0x1650 && tsagmin>=0x0820){ 
+0964:  MOVF   1A,W
+0966:  SUBLW  16
+0968:  BNC   0986
+096A:  BNZ   0972
+096C:  MOVF   19,W
+096E:  SUBLW  50
+0970:  BNC   0986
+0972:  MOVF   1A,W
+0974:  SUBLW  07
+0976:  BC    0986
+0978:  XORLW  FF
+097A:  BNZ   0982
+097C:  MOVF   19,W
+097E:  SUBLW  1F
+0980:  BC    0986
+....................       //led is off 
+....................       led=0; 
+0982:  BCF    F82.7
+....................   } 
+....................   else{ 
+0984:  BRA    0988
+....................    //led is on 
+....................    led=1; 
+0986:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0301 && sarudur<=0x0315){ 
+0988:  MOVF   1C,W
+098A:  SUBLW  02
+098C:  BC    09C0
+098E:  XORLW  FF
+0990:  BNZ   0998
+0992:  MOVF   1B,W
+0994:  SUBLW  00
+0996:  BC    09C0
+0998:  MOVF   1C,W
+099A:  SUBLW  03
+099C:  BNC   09C0
+099E:  BNZ   09A6
+09A0:  MOVF   1B,W
+09A2:  SUBLW  15
+09A4:  BNC   09C0
+....................   if(tsagmin>=0x0800 && tsagmin<=0x1836){ 
+09A6:  MOVF   1A,W
+09A8:  SUBLW  07
+09AA:  BC    09BE
+09AC:  MOVF   1A,W
+09AE:  SUBLW  18
+09B0:  BNC   09BE
+09B2:  BNZ   09BA
+09B4:  MOVF   19,W
+09B6:  SUBLW  36
+09B8:  BNC   09BE
+....................    //off 
+....................    led=0; 
+09BA:  BCF    F82.7
+....................   } 
+....................   else{ 
+09BC:  BRA    09C0
+....................   //on 
+....................   led=1; 
+09BE:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0316 && sarudur<=0x0331){ 
+09C0:  MOVF   1C,W
+09C2:  SUBLW  02
+09C4:  BC    0A02
+09C6:  XORLW  FF
+09C8:  BNZ   09D0
+09CA:  MOVF   1B,W
+09CC:  SUBLW  15
+09CE:  BC    0A02
+09D0:  MOVF   1C,W
+09D2:  SUBLW  03
+09D4:  BNC   0A02
+09D6:  BNZ   09DE
+09D8:  MOVF   1B,W
+09DA:  SUBLW  31
+09DC:  BNC   0A02
+....................   if(tsagmin>=0x0704 && tsagmin<=0x1858){ 
+09DE:  MOVF   1A,W
+09E0:  SUBLW  06
+09E2:  BC    0A00
+09E4:  XORLW  FF
+09E6:  BNZ   09EE
+09E8:  MOVF   19,W
+09EA:  SUBLW  03
+09EC:  BC    0A00
+09EE:  MOVF   1A,W
+09F0:  SUBLW  18
+09F2:  BNC   0A00
+09F4:  BNZ   09FC
+09F6:  MOVF   19,W
+09F8:  SUBLW  58
+09FA:  BNC   0A00
+....................    //off 
+....................    led=0; 
+09FC:  BCF    F82.7
+....................   } 
+....................   else{ 
+09FE:  BRA    0A02
+....................   //on 
+....................   led=1; 
+0A00:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0400 && sarudur<=0x0415){ 
+0A02:  MOVF   1C,W
+0A04:  SUBLW  03
+0A06:  BC    0A3A
+0A08:  MOVF   1C,W
+0A0A:  SUBLW  04
+0A0C:  BNC   0A3A
+0A0E:  BNZ   0A16
+0A10:  MOVF   1B,W
+0A12:  SUBLW  15
+0A14:  BNC   0A3A
+....................   if(tsagmin>=0x0631 && tsagmin<=0x1921){ 
+0A16:  MOVF   1A,W
+0A18:  SUBLW  05
+0A1A:  BC    0A38
+0A1C:  XORLW  FF
+0A1E:  BNZ   0A26
+0A20:  MOVF   19,W
+0A22:  SUBLW  30
+0A24:  BC    0A38
+0A26:  MOVF   1A,W
+0A28:  SUBLW  19
+0A2A:  BNC   0A38
+0A2C:  BNZ   0A34
+0A2E:  MOVF   19,W
+0A30:  SUBLW  21
+0A32:  BNC   0A38
+....................    //off 
+....................    led=0; 
+0A34:  BCF    F82.7
+....................   } 
+....................   else{ 
+0A36:  BRA    0A3A
+....................   //on 
+....................   led=1; 
+0A38:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0416 && sarudur<=0x0431){ 
+0A3A:  MOVF   1C,W
+0A3C:  SUBLW  03
+0A3E:  BC    0A7C
+0A40:  XORLW  FF
+0A42:  BNZ   0A4A
+0A44:  MOVF   1B,W
+0A46:  SUBLW  15
+0A48:  BC    0A7C
+0A4A:  MOVF   1C,W
+0A4C:  SUBLW  04
+0A4E:  BNC   0A7C
+0A50:  BNZ   0A58
+0A52:  MOVF   1B,W
+0A54:  SUBLW  31
+0A56:  BNC   0A7C
+....................   if(tsagmin>=0x0602 && tsagmin<=0x1943){ 
+0A58:  MOVF   1A,W
+0A5A:  SUBLW  05
+0A5C:  BC    0A7A
+0A5E:  XORLW  FF
+0A60:  BNZ   0A68
+0A62:  MOVF   19,W
+0A64:  SUBLW  01
+0A66:  BC    0A7A
+0A68:  MOVF   1A,W
+0A6A:  SUBLW  19
+0A6C:  BNC   0A7A
+0A6E:  BNZ   0A76
+0A70:  MOVF   19,W
+0A72:  SUBLW  43
+0A74:  BNC   0A7A
+....................    //off 
+....................    led=0; 
+0A76:  BCF    F82.7
+....................   } 
+....................   else{ 
+0A78:  BRA    0A7C
+....................   //on 
+....................   led=1; 
+0A7A:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0500 && sarudur<=0x0515){ 
+0A7C:  MOVF   1C,W
+0A7E:  SUBLW  04
+0A80:  BC    0AB4
+0A82:  MOVF   1C,W
+0A84:  SUBLW  05
+0A86:  BNC   0AB4
+0A88:  BNZ   0A90
+0A8A:  MOVF   1B,W
+0A8C:  SUBLW  15
+0A8E:  BNC   0AB4
+....................   if(tsagmin>=0x0535 && tsagmin<=0x2004){ 
+0A90:  MOVF   1A,W
+0A92:  SUBLW  04
+0A94:  BC    0AB2
+0A96:  XORLW  FF
+0A98:  BNZ   0AA0
+0A9A:  MOVF   19,W
+0A9C:  SUBLW  34
+0A9E:  BC    0AB2
+0AA0:  MOVF   1A,W
+0AA2:  SUBLW  20
+0AA4:  BNC   0AB2
+0AA6:  BNZ   0AAE
+0AA8:  MOVF   19,W
+0AAA:  SUBLW  04
+0AAC:  BNC   0AB2
+....................    //off 
+....................    led=0; 
+0AAE:  BCF    F82.7
+....................   } 
+....................   else{ 
+0AB0:  BRA    0AB4
+....................   //on 
+....................   led=1; 
+0AB2:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0516 && sarudur<=0x0531){ 
+0AB4:  MOVF   1C,W
+0AB6:  SUBLW  04
+0AB8:  BC    0AF6
+0ABA:  XORLW  FF
+0ABC:  BNZ   0AC4
+0ABE:  MOVF   1B,W
+0AC0:  SUBLW  15
+0AC2:  BC    0AF6
+0AC4:  MOVF   1C,W
+0AC6:  SUBLW  05
+0AC8:  BNC   0AF6
+0ACA:  BNZ   0AD2
+0ACC:  MOVF   1B,W
+0ACE:  SUBLW  31
+0AD0:  BNC   0AF6
+....................   if(tsagmin>=0x0513 && tsagmin<=0x2024){ 
+0AD2:  MOVF   1A,W
+0AD4:  SUBLW  04
+0AD6:  BC    0AF4
+0AD8:  XORLW  FF
+0ADA:  BNZ   0AE2
+0ADC:  MOVF   19,W
+0ADE:  SUBLW  12
+0AE0:  BC    0AF4
+0AE2:  MOVF   1A,W
+0AE4:  SUBLW  20
+0AE6:  BNC   0AF4
+0AE8:  BNZ   0AF0
+0AEA:  MOVF   19,W
+0AEC:  SUBLW  24
+0AEE:  BNC   0AF4
+....................    //off 
+....................    led=0; 
+0AF0:  BCF    F82.7
+....................   } 
+....................   else{ 
+0AF2:  BRA    0AF6
+....................   //on 
+....................   led=1; 
+0AF4:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0600 && sarudur<=0x0615){ 
+0AF6:  MOVF   1C,W
+0AF8:  SUBLW  05
+0AFA:  BC    0B2E
+0AFC:  MOVF   1C,W
+0AFE:  SUBLW  06
+0B00:  BNC   0B2E
+0B02:  BNZ   0B0A
+0B04:  MOVF   1B,W
+0B06:  SUBLW  15
+0B08:  BNC   0B2E
+....................   if(tsagmin>=0x0457 && tsagmin<=0x2043){ 
+0B0A:  MOVF   1A,W
+0B0C:  SUBLW  03
+0B0E:  BC    0B2C
+0B10:  XORLW  FF
+0B12:  BNZ   0B1A
+0B14:  MOVF   19,W
+0B16:  SUBLW  56
+0B18:  BC    0B2C
+0B1A:  MOVF   1A,W
+0B1C:  SUBLW  20
+0B1E:  BNC   0B2C
+0B20:  BNZ   0B28
+0B22:  MOVF   19,W
+0B24:  SUBLW  43
+0B26:  BNC   0B2C
+....................    //off 
+....................    led=0; 
+0B28:  BCF    F82.7
+....................   } 
+....................   else{ 
+0B2A:  BRA    0B2E
+....................   //on 
+....................   led=1; 
+0B2C:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0616 && sarudur<=0x0631){ 
+0B2E:  MOVF   1C,W
+0B30:  SUBLW  05
+0B32:  BC    0B70
+0B34:  XORLW  FF
+0B36:  BNZ   0B3E
+0B38:  MOVF   1B,W
+0B3A:  SUBLW  15
+0B3C:  BC    0B70
+0B3E:  MOVF   1C,W
+0B40:  SUBLW  06
+0B42:  BNC   0B70
+0B44:  BNZ   0B4C
+0B46:  MOVF   1B,W
+0B48:  SUBLW  31
+0B4A:  BNC   0B70
+....................   if(tsagmin>=0x0452 && tsagmin<=0x2053){ 
+0B4C:  MOVF   1A,W
+0B4E:  SUBLW  03
+0B50:  BC    0B6E
+0B52:  XORLW  FF
+0B54:  BNZ   0B5C
+0B56:  MOVF   19,W
+0B58:  SUBLW  51
+0B5A:  BC    0B6E
+0B5C:  MOVF   1A,W
+0B5E:  SUBLW  20
+0B60:  BNC   0B6E
+0B62:  BNZ   0B6A
+0B64:  MOVF   19,W
+0B66:  SUBLW  53
+0B68:  BNC   0B6E
+....................    //off 
+....................    led=0; 
+0B6A:  BCF    F82.7
+....................   } 
+....................   else{ 
+0B6C:  BRA    0B70
+....................   //on 
+....................   led=1; 
+0B6E:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0700 && sarudur<=0x0715){ 
+0B70:  MOVF   1C,W
+0B72:  SUBLW  06
+0B74:  BC    0BA8
+0B76:  MOVF   1C,W
+0B78:  SUBLW  07
+0B7A:  BNC   0BA8
+0B7C:  BNZ   0B84
+0B7E:  MOVF   1B,W
+0B80:  SUBLW  15
+0B82:  BNC   0BA8
+....................   if(tsagmin>=0x0505 && tsagmin<=0x2050){ 
+0B84:  MOVF   1A,W
+0B86:  SUBLW  04
+0B88:  BC    0BA6
+0B8A:  XORLW  FF
+0B8C:  BNZ   0B94
+0B8E:  MOVF   19,W
+0B90:  SUBLW  04
+0B92:  BC    0BA6
+0B94:  MOVF   1A,W
+0B96:  SUBLW  20
+0B98:  BNC   0BA6
+0B9A:  BNZ   0BA2
+0B9C:  MOVF   19,W
+0B9E:  SUBLW  50
+0BA0:  BNC   0BA6
+....................    //off 
+....................    led=0; 
+0BA2:  BCF    F82.7
+....................   } 
+....................   else{ 
+0BA4:  BRA    0BA8
+....................   //on 
+....................   led=1; 
+0BA6:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0716 && sarudur<=0x0731){ 
+0BA8:  MOVF   1C,W
+0BAA:  SUBLW  06
+0BAC:  BC    0BEA
+0BAE:  XORLW  FF
+0BB0:  BNZ   0BB8
+0BB2:  MOVF   1B,W
+0BB4:  SUBLW  15
+0BB6:  BC    0BEA
+0BB8:  MOVF   1C,W
+0BBA:  SUBLW  07
+0BBC:  BNC   0BEA
+0BBE:  BNZ   0BC6
+0BC0:  MOVF   1B,W
+0BC2:  SUBLW  31
+0BC4:  BNC   0BEA
+....................   if(tsagmin>=0x0527 && tsagmin<=0x2029){ 
+0BC6:  MOVF   1A,W
+0BC8:  SUBLW  04
+0BCA:  BC    0BE8
+0BCC:  XORLW  FF
+0BCE:  BNZ   0BD6
+0BD0:  MOVF   19,W
+0BD2:  SUBLW  26
+0BD4:  BC    0BE8
+0BD6:  MOVF   1A,W
+0BD8:  SUBLW  20
+0BDA:  BNC   0BE8
+0BDC:  BNZ   0BE4
+0BDE:  MOVF   19,W
+0BE0:  SUBLW  29
+0BE2:  BNC   0BE8
+....................    //off 
+....................    led=0; 
+0BE4:  BCF    F82.7
+....................   } 
+....................   else{ 
+0BE6:  BRA    0BEA
+....................   //on 
+....................   led=1; 
+0BE8:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0800 && sarudur<=0x0815){ 
+0BEA:  MOVF   1C,W
+0BEC:  SUBLW  07
+0BEE:  BC    0C22
+0BF0:  MOVF   1C,W
+0BF2:  SUBLW  08
+0BF4:  BNC   0C22
+0BF6:  BNZ   0BFE
+0BF8:  MOVF   1B,W
+0BFA:  SUBLW  15
+0BFC:  BNC   0C22
+....................   if(tsagmin>=0x0545 && tsagmin<=0x2007){ 
+0BFE:  MOVF   1A,W
+0C00:  SUBLW  04
+0C02:  BC    0C20
+0C04:  XORLW  FF
+0C06:  BNZ   0C0E
+0C08:  MOVF   19,W
+0C0A:  SUBLW  44
+0C0C:  BC    0C20
+0C0E:  MOVF   1A,W
+0C10:  SUBLW  20
+0C12:  BNC   0C20
+0C14:  BNZ   0C1C
+0C16:  MOVF   19,W
+0C18:  SUBLW  07
+0C1A:  BNC   0C20
+....................    //off 
+....................    led=0; 
+0C1C:  BCF    F82.7
+....................   } 
+....................   else{ 
+0C1E:  BRA    0C22
+....................   //on 
+....................   led=1; 
+0C20:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0816 && sarudur<=0x0831){ 
+0C22:  MOVF   1C,W
+0C24:  SUBLW  07
+0C26:  BC    0C64
+0C28:  XORLW  FF
+0C2A:  BNZ   0C32
+0C2C:  MOVF   1B,W
+0C2E:  SUBLW  15
+0C30:  BC    0C64
+0C32:  MOVF   1C,W
+0C34:  SUBLW  08
+0C36:  BNC   0C64
+0C38:  BNZ   0C40
+0C3A:  MOVF   1B,W
+0C3C:  SUBLW  31
+0C3E:  BNC   0C64
+....................   if(tsagmin>=0x0608 && tsagmin<=0x1936){ 
+0C40:  MOVF   1A,W
+0C42:  SUBLW  05
+0C44:  BC    0C62
+0C46:  XORLW  FF
+0C48:  BNZ   0C50
+0C4A:  MOVF   19,W
+0C4C:  SUBLW  07
+0C4E:  BC    0C62
+0C50:  MOVF   1A,W
+0C52:  SUBLW  19
+0C54:  BNC   0C62
+0C56:  BNZ   0C5E
+0C58:  MOVF   19,W
+0C5A:  SUBLW  36
+0C5C:  BNC   0C62
+....................    //off 
+....................    led=0; 
+0C5E:  BCF    F82.7
+....................   } 
+....................   else{ 
+0C60:  BRA    0C64
+....................   //on 
+....................   led=1; 
+0C62:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x0900 && sarudur<=0x0915){ 
+0C64:  MOVF   1C,W
+0C66:  SUBLW  08
+0C68:  BC    0C9C
+0C6A:  MOVF   1C,W
+0C6C:  SUBLW  09
+0C6E:  BNC   0C9C
+0C70:  BNZ   0C78
+0C72:  MOVF   1B,W
+0C74:  SUBLW  15
+0C76:  BNC   0C9C
+....................   if(tsagmin>=0x0628 && tsagmin<=0x1905){ 
+0C78:  MOVF   1A,W
+0C7A:  SUBLW  05
+0C7C:  BC    0C9A
+0C7E:  XORLW  FF
+0C80:  BNZ   0C88
+0C82:  MOVF   19,W
+0C84:  SUBLW  27
+0C86:  BC    0C9A
+0C88:  MOVF   1A,W
+0C8A:  SUBLW  19
+0C8C:  BNC   0C9A
+0C8E:  BNZ   0C96
+0C90:  MOVF   19,W
+0C92:  SUBLW  05
+0C94:  BNC   0C9A
+....................    //off 
+....................    led=0; 
+0C96:  BCF    F82.7
+....................   } 
+....................   else{ 
+0C98:  BRA    0C9C
+....................   //on 
+....................   led=1; 
+0C9A:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x0916 && sarudur<=0x0931){ 
+0C9C:  MOVF   1C,W
+0C9E:  SUBLW  08
+0CA0:  BC    0CDE
+0CA2:  XORLW  FF
+0CA4:  BNZ   0CAC
+0CA6:  MOVF   1B,W
+0CA8:  SUBLW  15
+0CAA:  BC    0CDE
+0CAC:  MOVF   1C,W
+0CAE:  SUBLW  09
+0CB0:  BNC   0CDE
+0CB2:  BNZ   0CBA
+0CB4:  MOVF   1B,W
+0CB6:  SUBLW  31
+0CB8:  BNC   0CDE
+....................   if(tsagmin>=0x0649 && tsagmin<=0x1834){ 
+0CBA:  MOVF   1A,W
+0CBC:  SUBLW  05
+0CBE:  BC    0CDC
+0CC0:  XORLW  FF
+0CC2:  BNZ   0CCA
+0CC4:  MOVF   19,W
+0CC6:  SUBLW  48
+0CC8:  BC    0CDC
+0CCA:  MOVF   1A,W
+0CCC:  SUBLW  18
+0CCE:  BNC   0CDC
+0CD0:  BNZ   0CD8
+0CD2:  MOVF   19,W
+0CD4:  SUBLW  34
+0CD6:  BNC   0CDC
+....................    //off 
+....................    led=0; 
+0CD8:  BCF    F82.7
+....................   } 
+....................   else{ 
+0CDA:  BRA    0CDE
+....................   //on 
+....................   led=1; 
+0CDC:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sarudur>=0x1000 && sarudur<=0x1015){ 
+0CDE:  MOVF   1C,W
+0CE0:  SUBLW  0F
+0CE2:  BC    0D16
+0CE4:  MOVF   1C,W
+0CE6:  SUBLW  10
+0CE8:  BNC   0D16
+0CEA:  BNZ   0CF2
+0CEC:  MOVF   1B,W
+0CEE:  SUBLW  15
+0CF0:  BNC   0D16
+....................   if(tsagmin>=0x0713 && tsagmin<=0x1800){ 
+0CF2:  MOVF   1A,W
+0CF4:  SUBLW  06
+0CF6:  BC    0D14
+0CF8:  XORLW  FF
+0CFA:  BNZ   0D02
+0CFC:  MOVF   19,W
+0CFE:  SUBLW  12
+0D00:  BC    0D14
+0D02:  MOVF   1A,W
+0D04:  SUBLW  18
+0D06:  BNC   0D14
+0D08:  BNZ   0D10
+0D0A:  MOVF   19,W
+0D0C:  SUBLW  00
+0D0E:  BNC   0D14
+....................    //off 
+....................    led=0; 
+0D10:  BCF    F82.7
+....................   } 
+....................   else{ 
+0D12:  BRA    0D16
+....................   //on 
+....................   led=1; 
+0D14:  BSF    F82.7
+....................   } 
+.................... } 
+.................... if(sarudur>=0x1016 && sarudur<=0x1031){ 
+0D16:  MOVF   1C,W
+0D18:  SUBLW  0F
+0D1A:  BC    0D58
+0D1C:  XORLW  FF
+0D1E:  BNZ   0D26
+0D20:  MOVF   1B,W
+0D22:  SUBLW  15
+0D24:  BC    0D58
+0D26:  MOVF   1C,W
+0D28:  SUBLW  10
+0D2A:  BNC   0D58
+0D2C:  BNZ   0D34
+0D2E:  MOVF   1B,W
+0D30:  SUBLW  31
+0D32:  BNC   0D58
+....................   if(tsagmin>=0x0734 && tsagmin<=0x1736){ 
+0D34:  MOVF   1A,W
+0D36:  SUBLW  06
+0D38:  BC    0D56
+0D3A:  XORLW  FF
+0D3C:  BNZ   0D44
+0D3E:  MOVF   19,W
+0D40:  SUBLW  33
+0D42:  BC    0D56
+0D44:  MOVF   1A,W
+0D46:  SUBLW  17
+0D48:  BNC   0D56
+0D4A:  BNZ   0D52
+0D4C:  MOVF   19,W
+0D4E:  SUBLW  36
+0D50:  BNC   0D56
+....................    //off 
+....................    led=0; 
+0D52:  BCF    F82.7
+....................   } 
+....................   else{ 
+0D54:  BRA    0D58
+....................   //on 
+....................   led=1; 
+0D56:  BSF    F82.7
+....................   } 
+.................... } 
+....................  
+.................... if(sec>=0x60){ 
+0D58:  MOVF   38,W
+0D5A:  SUBLW  5F
+0D5C:  BC    0DBE
+.................... I2C_Start();                          // Start I2C communication 
+0D5E:  BSF    F94.4
+0D60:  NOP   
+0D62:  BSF    F94.3
+0D64:  NOP   
+0D66:  BCF    F8B.4
+0D68:  BCF    F94.4
+0D6A:  NOP   
+0D6C:  BCF    F8B.3
+0D6E:  BCF    F94.3
+0D70:  CLRF   18
+0D72:  BTFSC  FF2.7
+0D74:  BSF    18.7
+0D76:  BCF    FF2.7
+.................... I2C_Write(0xd0);                   // connect to DS1307 by sending its ID on I2c Bus 
+0D78:  MOVLW  D0
+0D7A:  MOVWF  4A
+0D7C:  CALL   009E
+0D80:  BTFSC  18.7
+0D82:  BSF    FF2.7
+0D84:  CLRF   18
+0D86:  BTFSC  FF2.7
+0D88:  BSF    18.7
+0D8A:  BCF    FF2.7
+.................... I2C_Write(0x00);                   // Request sec RAM address at 02H 
+0D8C:  CLRF   4A
+0D8E:  CALL   009E
+0D92:  BTFSC  18.7
+0D94:  BSF    FF2.7
+0D96:  CLRF   18
+0D98:  BTFSC  FF2.7
+0D9A:  BSF    18.7
+0D9C:  BCF    FF2.7
+.................... I2C_Write(1);                    // Write sec from RAM address 00H 
+0D9E:  MOVLW  01
+0DA0:  MOVWF  4A
+0DA2:  CALL   009E
+0DA6:  BTFSC  18.7
+0DA8:  BSF    FF2.7
+.................... I2C_STOP(); 
+0DAA:  BCF    F94.4
+0DAC:  NOP   
+0DAE:  BSF    F94.3
+0DB0:  BTFSS  F82.3
+0DB2:  BRA    0DB0
+0DB4:  NOP   
+0DB6:  BRA    0DB8
+0DB8:  NOP   
+0DBA:  BSF    F94.4
+0DBC:  NOP   
+.................... } 
+....................  
+.................... } 
+0DBE:  BRA    06C4
+.................... } 
+....................  
+0DC0:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2200   HS NOOSCSEN
+   Word  2: 0E0F   BROWNOUT WDT128 NOWDT BORV20 NOPUT
+   Word  3: 0100   CCP2C1
+   Word  4: 0081   STVREN NODEBUG NOLVP
+   Word  5: C00F   NOPROTECT NOCPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTB NOWRTC
+   Word  7: 400F   NOEBTR NOEBTRB

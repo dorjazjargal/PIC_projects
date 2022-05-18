@@ -1,0 +1,141 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @SCRATCH
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     @INTERRUPT_AREA
+019-01A tsagmin
+01B-01C sarudur
+01D-01E tsagmin_2
+01F     uldegdel
+020     uld_0
+021     uld_1
+022     buhel
+023     b0
+024     b1
+025-02E shfr
+02F     r0
+030     a0
+031     mode
+032     sec0
+033     sec1
+034     min0
+035     min1
+036     tsag0
+037     tsag1
+038     sec
+039     min
+03A     hour
+03B     weekDay
+03C     date
+03D     month
+03E     year
+03F     day0
+040     day1
+041     sar0
+042     sar1
+043.0   setbit
+043.1   hassan_sec
+044     set_bcd.ival
+044     @I2C_READ_1.P1
+044     set_sec.@SCRATCH1
+044     MAIN.@SCRATCH1
+045     @delay_ms1.P1
+045     @I2C_READ_1.@SCRATCH1
+045     set_bcd.@SCRATCH1
+046     @I2C_READ_1.@SCRATCH2
+046     set_bcd.@SCRATCH2
+047     @DIV88.P1
+048     @DIV88.P1
+049     @DIV88.@SCRATCH1
+04A     @I2C_WRITE_1.P1
+04A     EXT_isr.@SCRATCH1
+F80     port_a
+F81     port_b
+F82.0   digit3
+F82.1   digit2
+F82.2   digit1
+F82.5   digit0
+F82.7   led
+F83     PSP_DATA
+F83     port_d
+F84     port_e
+FBB     CCP_2_LOW
+FBB-FBC CCP_2
+FBC     CCP_2_HIGH
+FBE-FBF CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0188  @delay_ms1
+020E  @I2C_READ_1
+009E  @I2C_WRITE_1
+0256  rtc_getdate
+03D0  set_bcd
+03A8  @DIV88
+03F6  read_port_a
+031C  set_sec
+040E  set_min
+0482  set_tsag
+056A  set_sar
+04F6  set_udur
+00E6  EXT_isr
+0166  @goto10164
+01AE  set_year
+05DE  MAIN
+05DE  @cinit
+
+Project Directory:
+    D:\PIC_PROJECT\
+
+Project Files:
+    tsag_zahirgaa.c
+    tsag_zahirgaa.h
+    C:\Program Files (x86)\PICC\devices\18F452.h
+
+Units:
+    D:\PIC_PROJECT\tsag_zahirgaa.c (main)
+
+Compiler Settings:
+    Processor:      PIC18F452
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      tsag_zahirgaa.err
+    Ext Symbols: tsag_zahirgaa.esym
+    INHX32:      tsag_zahirgaa.hex
+    Symbols:     tsag_zahirgaa.sym
+    List:        tsag_zahirgaa.lst
+    Debug/COFF:  tsag_zahirgaa.cof
+    Project:     tsag_zahirgaa.PJT
+    Call Tree:   tsag_zahirgaa.tre
+    Statistics:  tsag_zahirgaa.sta

@@ -1,0 +1,430 @@
+CCS PCH C Compiler, Version 4.057, 53710               15-Feb-22 09:20
+
+               Filename: D:\PIC_PROJECT\tungaah.lst
+
+               ROM used: 736 bytes (2%)
+                         Largest free fragment is 32028
+               RAM used: 44 (3%) at main() level
+                         48 (3%) worst case
+               Stack:    3 worst case (2 in main + 1 for interrupts)
+
+*
+0000:  GOTO   01C4
+*
+0008:  MOVWF  05
+000A:  MOVFF  FD8,06
+000E:  MOVFF  FE0,07
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0D
+0018:  MOVFF  FEA,08
+001C:  MOVFF  FE1,09
+0020:  MOVFF  FE2,0A
+0024:  MOVFF  FD9,0B
+0028:  MOVFF  FDA,0C
+002C:  MOVFF  FF3,14
+0030:  MOVFF  FF4,15
+0034:  MOVFF  FFA,16
+0038:  MOVFF  00,0F
+003C:  MOVFF  01,10
+0040:  MOVFF  02,11
+0044:  MOVFF  03,12
+0048:  MOVFF  04,13
+004C:  BTFSS  F9D.5
+004E:  GOTO   0058
+0052:  BTFSC  F9E.5
+0054:  GOTO   009E
+0058:  MOVFF  0F,00
+005C:  MOVFF  10,01
+0060:  MOVFF  11,02
+0064:  MOVFF  12,03
+0068:  MOVFF  13,04
+006C:  BSF    0E.7
+006E:  MOVFF  0D,FE9
+0072:  MOVFF  08,FEA
+0076:  MOVFF  09,FE1
+007A:  MOVFF  0A,FE2
+007E:  MOVFF  0B,FD9
+0082:  MOVFF  0C,FDA
+0086:  MOVFF  14,FF3
+008A:  MOVFF  15,FF4
+008E:  MOVFF  16,FFA
+0092:  MOVF   05,W
+0094:  MOVFF  07,FE0
+0098:  MOVFF  06,FD8
+009C:  RETFIE 0
+.................... #include "D:\PIC_PROJECT\tungaah.h" 
+.................... #include <18F452.h> 
+.................... //////// Standard Header file for the PIC18F452 device //////////////// 
+.................... #device PIC18F452 
+.................... #list 
+....................  
+.................... #device adc=8 
+....................  
+.................... #FUSES NOWDT                 	//No Watch Dog Timer 
+.................... #FUSES WDT128                	//Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HS                    	//High speed Osc (> 4mhz) 
+.................... #FUSES NOPROTECT             	//Code not protected from reading 
+.................... #FUSES NOOSCSEN              	//Oscillator switching is disabled, main oscillator is source 
+.................... #FUSES BROWNOUT              	//Reset when brownout detected 
+.................... #FUSES BORV20                	//Brownout reset at 2.0V 
+.................... #FUSES NOPUT                 	//No Power Up Timer 
+.................... #FUSES STVREN                	//Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG               	//No Debug mode for ICD 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                 	//Program memory not write protected 
+.................... #FUSES NOWRTD                	//Data EEPROM not write protected 
+.................... #FUSES NOWRTB                	//Boot block not write protected 
+.................... #FUSES NOWRTC                	//configuration not registers write protected 
+.................... #FUSES NOCPD                 	//No EE protection 
+.................... #FUSES NOCPB                 	//No Boot Block code protection 
+.................... #FUSES NOEBTR                	//Memory not protected from table reads 
+.................... #FUSES NOEBTRB               	//Boot block not protected from table reads 
+....................  
+.................... #use delay(clock=40000000) 
+.................... #use rs232(baud=115200,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8) 
+....................  
+....................  
+.................... #byte port_a   =  0x0f80 
+.................... #byte port_b   =  0x0f81 
+.................... #byte port_d   =  0x0f83 
+.................... #byte port_e   =  0x0f84 
+....................  
+.................... int8 umnuh_a=0, umnuh_b=0, umnuh_d=0, umnuh_e=0, porta=0; 
+.................... int8 ascii_number[10]={0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39}; 
+....................  
+.................... int8 temp,n1,n2,n3=0; 
+....................  
+.................... #int_RDA 
+.................... void  RDA_isr(void)  
+.................... { 
+.................... temp=getc(); 
+*
+009E:  BTFSS  F9E.5
+00A0:  BRA    009E
+00A2:  MOVFF  FAE,27
+.................... } 
+....................  
+....................  
+00A6:  BCF    F9E.5
+00A8:  GOTO   0058
+.................... void convert_ascii(int8 port){ 
+....................    if(port>=100){ 
+*
+00D4:  MOVF   2C,W
+00D6:  SUBLW  63
+00D8:  BC    016A
+....................       n3=port/100; 
+00DA:  MOVFF  2C,2D
+00DE:  MOVLW  64
+00E0:  MOVWF  2E
+00E2:  RCALL  00AC
+00E4:  MOVFF  01,2A
+....................       n2=port%100; 
+00E8:  MOVFF  2C,2D
+00EC:  MOVLW  64
+00EE:  MOVWF  2E
+00F0:  RCALL  00AC
+00F2:  MOVFF  00,29
+....................       n2=n2/10; 
+00F6:  MOVFF  29,2D
+00FA:  MOVLW  0A
+00FC:  MOVWF  2E
+00FE:  RCALL  00AC
+0100:  MOVFF  01,29
+....................       n1=port%10; 
+0104:  MOVFF  2C,2D
+0108:  MOVLW  0A
+010A:  MOVWF  2E
+010C:  RCALL  00AC
+010E:  MOVFF  00,28
+....................       putc(ascii_number[n3]); 
+0112:  CLRF   03
+0114:  MOVF   2A,W
+0116:  ADDLW  1D
+0118:  MOVWF  FE9
+011A:  MOVLW  00
+011C:  ADDWFC 03,W
+011E:  MOVWF  FEA
+0120:  MOVFF  FEF,2D
+0124:  MOVF   2D,W
+0126:  BTFSS  F9E.4
+0128:  BRA    0126
+012A:  MOVWF  FAD
+....................       putc(ascii_number[n2]); 
+012C:  CLRF   03
+012E:  MOVF   29,W
+0130:  ADDLW  1D
+0132:  MOVWF  FE9
+0134:  MOVLW  00
+0136:  ADDWFC 03,W
+0138:  MOVWF  FEA
+013A:  MOVFF  FEF,2D
+013E:  MOVF   2D,W
+0140:  BTFSS  F9E.4
+0142:  BRA    0140
+0144:  MOVWF  FAD
+....................       putc(ascii_number[n1]); 
+0146:  CLRF   03
+0148:  MOVF   28,W
+014A:  ADDLW  1D
+014C:  MOVWF  FE9
+014E:  MOVLW  00
+0150:  ADDWFC 03,W
+0152:  MOVWF  FEA
+0154:  MOVFF  FEF,2D
+0158:  MOVF   2D,W
+015A:  BTFSS  F9E.4
+015C:  BRA    015A
+015E:  MOVWF  FAD
+....................       putc(0x0d); 
+0160:  MOVLW  0D
+0162:  BTFSS  F9E.4
+0164:  BRA    0162
+0166:  MOVWF  FAD
+....................    } 
+....................    else{ 
+0168:  BRA    01C2
+....................       n2=port/10; 
+016A:  MOVFF  2C,2D
+016E:  MOVLW  0A
+0170:  MOVWF  2E
+0172:  RCALL  00AC
+0174:  MOVFF  01,29
+....................       n1=port%10; 
+0178:  MOVFF  2C,2D
+017C:  MOVLW  0A
+017E:  MOVWF  2E
+0180:  RCALL  00AC
+0182:  MOVFF  00,28
+....................       putc(ascii_number[n2]); 
+0186:  CLRF   03
+0188:  MOVF   29,W
+018A:  ADDLW  1D
+018C:  MOVWF  FE9
+018E:  MOVLW  00
+0190:  ADDWFC 03,W
+0192:  MOVWF  FEA
+0194:  MOVFF  FEF,2D
+0198:  MOVF   2D,W
+019A:  BTFSS  F9E.4
+019C:  BRA    019A
+019E:  MOVWF  FAD
+....................       putc(ascii_number[n1]); 
+01A0:  CLRF   03
+01A2:  MOVF   28,W
+01A4:  ADDLW  1D
+01A6:  MOVWF  FE9
+01A8:  MOVLW  00
+01AA:  ADDWFC 03,W
+01AC:  MOVWF  FEA
+01AE:  MOVFF  FEF,2D
+01B2:  MOVF   2D,W
+01B4:  BTFSS  F9E.4
+01B6:  BRA    01B4
+01B8:  MOVWF  FAD
+....................       putc(0x0d); 
+01BA:  MOVLW  0D
+01BC:  BTFSS  F9E.4
+01BE:  BRA    01BC
+01C0:  MOVWF  FAD
+....................    } 
+....................     
+.................... } 
+01C2:  RETLW  00
+....................  
+.................... void main() 
+.................... { 
+01C4:  CLRF   FF8
+01C6:  BCF    FD0.7
+01C8:  BSF    0D.7
+01CA:  CLRF   FEA
+01CC:  CLRF   FE9
+01CE:  MOVLW  15
+01D0:  MOVWF  FAF
+01D2:  MOVLW  A6
+01D4:  MOVWF  FAC
+01D6:  MOVLW  90
+01D8:  MOVWF  FAB
+01DA:  BSF    FC1.0
+01DC:  BSF    FC1.1
+01DE:  BSF    FC1.2
+01E0:  BCF    FC1.3
+01E2:  CLRF   18
+01E4:  CLRF   19
+01E6:  CLRF   1A
+01E8:  CLRF   1B
+01EA:  CLRF   1C
+01EC:  MOVLW  30
+01EE:  MOVWF  1D
+01F0:  MOVLW  31
+01F2:  MOVWF  1E
+01F4:  MOVLW  32
+01F6:  MOVWF  1F
+01F8:  MOVLW  33
+01FA:  MOVWF  20
+01FC:  MOVLW  34
+01FE:  MOVWF  21
+0200:  MOVLW  35
+0202:  MOVWF  22
+0204:  MOVLW  36
+0206:  MOVWF  23
+0208:  MOVLW  37
+020A:  MOVWF  24
+020C:  MOVLW  38
+020E:  MOVWF  25
+0210:  MOVLW  39
+0212:  MOVWF  26
+0214:  CLRF   2A
+....................    setup_adc_ports(NO_ANALOGS); 
+0216:  BSF    FC1.0
+0218:  BSF    FC1.1
+021A:  BSF    FC1.2
+021C:  BCF    FC1.3
+....................    setup_adc(ADC_OFF); 
+021E:  BCF    FC2.0
+....................    setup_psp(PSP_DISABLED); 
+0220:  BCF    F96.4
+....................    setup_spi(SPI_SS_DISABLED); 
+0222:  BCF    FC6.5
+0224:  BCF    F94.5
+0226:  BSF    F94.4
+0228:  BCF    F94.3
+022A:  MOVLW  01
+022C:  MOVWF  FC6
+022E:  MOVLW  00
+0230:  MOVWF  FC7
+....................    setup_wdt(WDT_OFF); 
+0232:  BCF    FD1.0
+....................    setup_timer_0(RTCC_INTERNAL); 
+0234:  MOVLW  80
+0236:  MOVWF  FD5
+....................    setup_timer_1(T1_DISABLED); 
+0238:  CLRF   FCD
+....................    setup_timer_2(T2_DISABLED,0,1); 
+023A:  MOVLW  00
+023C:  MOVWF  FCA
+023E:  MOVLW  00
+0240:  MOVWF  FCB
+....................    enable_interrupts(INT_RDA); 
+0242:  BSF    F9D.5
+....................    enable_interrupts(GLOBAL); 
+0244:  MOVLW  C0
+0246:  IORWF  FF2,F
+.................... set_tris_a(0x3f); 
+0248:  MOVLW  3F
+024A:  MOVWF  F92
+.................... set_tris_b(0xff); 
+024C:  MOVLW  FF
+024E:  MOVWF  F93
+.................... set_tris_c(0x80); 
+0250:  MOVLW  80
+0252:  MOVWF  F94
+.................... set_tris_d(0xff); 
+0254:  MOVLW  FF
+0256:  MOVWF  F95
+.................... set_tris_e(0xff); 
+0258:  BSF    F96.0
+025A:  BSF    F96.1
+025C:  BSF    F96.2
+....................  
+.................... for(;;){ 
+....................  
+....................  
+....................    if(umnuh_a!=~port_a){ 
+025E:  MOVF   F80,W
+0260:  XORLW  FF
+0262:  SUBWF  18,W
+0264:  BZ    027A
+....................       putc('a'); 
+0266:  MOVLW  61
+0268:  BTFSS  F9E.4
+026A:  BRA    0268
+026C:  MOVWF  FAD
+....................      // porta=port_a&0x3f; 
+....................       convert_ascii(~port_a); 
+026E:  MOVFF  F80,2B
+0272:  COMF   2B,F
+0274:  MOVFF  2B,2C
+0278:  RCALL  00D4
+....................       
+....................    } 
+....................    umnuh_a=~port_a; 
+027A:  MOVFF  F80,18
+027E:  COMF   18,F
+....................    umnuh_a=0; 
+0280:  CLRF   18
+....................     
+....................    if(umnuh_b!=~port_b){ 
+0282:  MOVF   F81,W
+0284:  XORLW  FF
+0286:  SUBWF  19,W
+0288:  BZ    029E
+....................       putc('b'); 
+028A:  MOVLW  62
+028C:  BTFSS  F9E.4
+028E:  BRA    028C
+0290:  MOVWF  FAD
+....................       convert_ascii(~port_b); 
+0292:  MOVFF  F81,2B
+0296:  COMF   2B,F
+0298:  MOVFF  2B,2C
+029C:  RCALL  00D4
+....................       
+....................    } 
+....................    umnuh_b=~port_b; 
+029E:  MOVFF  F81,19
+02A2:  COMF   19,F
+....................     
+....................     if(umnuh_d!=port_d){ 
+02A4:  MOVF   F83,W
+02A6:  SUBWF  1A,W
+02A8:  BZ    02B8
+....................       putc('d'); 
+02AA:  MOVLW  64
+02AC:  BTFSS  F9E.4
+02AE:  BRA    02AC
+02B0:  MOVWF  FAD
+....................       convert_ascii(port_d); 
+02B2:  MOVFF  F83,2C
+02B6:  RCALL  00D4
+....................        
+....................    } 
+....................    umnuh_d=port_d; 
+02B8:  MOVFF  F83,1A
+....................    umnuh_d=0; 
+02BC:  CLRF   1A
+....................     
+....................    if(umnuh_e!=~port_e){ 
+02BE:  MOVF   F84,W
+02C0:  XORLW  FF
+02C2:  SUBWF  1B,W
+02C4:  BZ    02DA
+....................       putc('e'); 
+02C6:  MOVLW  65
+02C8:  BTFSS  F9E.4
+02CA:  BRA    02C8
+02CC:  MOVWF  FAD
+....................       convert_ascii(~port_e); 
+02CE:  MOVFF  F84,2B
+02D2:  COMF   2B,F
+02D4:  MOVFF  2B,2C
+02D8:  RCALL  00D4
+....................        
+....................    } 
+....................    umnuh_e=~port_e; 
+02DA:  MOVFF  F84,1B
+02DE:  COMF   1B,F
+....................     
+.................... } 
+02E0:  BRA    025E
+.................... } 
+02E2:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2200   HS NOOSCSEN
+   Word  2: 0E0F   BROWNOUT WDT128 NOWDT BORV20 NOPUT
+   Word  3: 0100   CCP2C1
+   Word  4: 0081   STVREN NODEBUG NOLVP
+   Word  5: C00F   NOPROTECT NOCPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTB NOWRTC
+   Word  7: 400F   NOEBTR NOEBTRB

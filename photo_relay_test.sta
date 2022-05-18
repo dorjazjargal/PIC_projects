@@ -1,0 +1,50 @@
+
+ROM used: 1078 (3%)
+          1078 (3%) including unused fragments
+
+          2 Average locations per line
+          14 Average locations per statement
+
+RAM used: 48 (3%) at main() level
+          53 (3%) worst case
+
+Stack used: 3 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  118    78 100  photo_relay_test.c
+   27     0   0  photo_relay_test.h
+  332     0   0  C:\Program Files (x86)\PICC\devices\18F452.h
+----- -----
+  477    78 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     38   2   1             @delay_ms1
+0     14   1   0    24  1.5  RDA_isr
+0    102   5   1   301  5.6  avg_adc
+0     66   3   5             @DIV1616
+0    664  31   1  2063  7.4  MAIN
+0     40   2   3             @DIV88
+
+Program metrics:
+    Functions               3
+    Statements              78
+    Comments                90
+    Volume (V)              2678
+    Difficilty (D)          14.8
+    Effort to implement (E) 39554
+    Time to implement (T)   37 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   8
+    Maintainability (MI)    123
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0009C   150  0  
+0009E-07FFE   924  31686  
+
+
+

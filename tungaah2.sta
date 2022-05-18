@@ -1,0 +1,50 @@
+
+ROM used: 762 (2%)
+          762 (2%) including unused fragments
+
+          2 Average locations per line
+          20 Average locations per statement
+
+RAM used: 44 (3%) at main() level
+          49 (3%) worst case
+
+Stack used: 4 worst case (out of 29 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   97    38 100  tungaah2.c
+   27     0   0  tungaah2.h
+  332     0   0  C:\Program Files (x86)\PICC\devices\18F452.h
+----- -----
+  456    38 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     66   4   1             @PUTCHAR_1_
+0     76   5   1             @GETCH_1_
+0     12   1   0    24  1.5  RDA_isr
+0    214  14   2   438  4.7  convert_ascii
+0     40   3   3             @DIV88
+0    200  13   1   559  2.9  MAIN
+
+Program metrics:
+    Functions               3
+    Statements              38
+    Comments                104
+    Volume (V)              1253
+    Difficilty (D)          9.1
+    Effort to implement (E) 11436
+    Time to implement (T)   11 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   2
+    Maintainability (MI)    113
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0009C   150  0  
+0009E-07FFE   608  32002  
+
+
+

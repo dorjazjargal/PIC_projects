@@ -1,0 +1,50 @@
+
+ROM used: 816 (2%)
+          816 (2%) including unused fragments
+
+          2 Average locations per line
+          21 Average locations per statement
+
+RAM used: 50 (3%) at main() level
+          56 (4%) worst case
+
+Stack used: 3 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   78    39 100  adc_test1.c
+   27     0   0  adc_test1.h
+  332     0   0  C:\Program Files (x86)\PICC\devices\18F452.h
+----- -----
+  437    39 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     40   2   1             @delay_ms1
+0     14   1   0    24  1.5  RDA_isr
+0    224  14   3   395  3.3  str
+0     66   4   5             @DIV1616
+0     40   2   3             @DIV88
+0    278  17   1   633  2.9  MAIN
+
+Program metrics:
+    Functions               3
+    Statements              39
+    Comments                86
+    Volume (V)              1285
+    Difficilty (D)          7.8
+    Effort to implement (E) 10018
+    Time to implement (T)   9 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    143
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0009C   150  0  
+0009E-07FFE   662  31948  
+
+
+

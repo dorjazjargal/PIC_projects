@@ -1,0 +1,6 @@
+>>> Warning 202 "adc_test1.c" Line 5(12,14): Variable never used:   a1
+>>> Warning 202 "adc_test1.c" Line 5(17,19): Variable never used:   e0
+>>> Warning 202 "adc_test1.c" Line 5(22,24): Variable never used:   e1
+>>> Warning 202 "adc_test1.c" Line 5(27,29): Variable never used:   e2
+      Memory usage:   ROM=2%      RAM=3% - 4%
+      0 Errors,  4 Warnings.
